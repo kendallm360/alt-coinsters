@@ -8,16 +8,7 @@ const CoinContainer = () => {
   // const marketMovers = ["BTC", "ETH"]; //"USDT", "USDC", "XRP"
   const topFifteen = ["GRT"]; // "DOGE", "DOT", "ADA", "UNI", "XLM", "SOL"
 
-  useEffect(() => {});
-
-  // let test = marketMovers.forEach((coin) => {
-  //   fetchCoin(coin).then((data) => {
-  //     //   console.log(data.ticker);
-  //     setCoinList(data.results);
-  //     //   coinList.push(data);
-  //   });
-  //   console.log(coinList);
-  // });
+  // useEffect(() => {});
 
   return (
     <div className="coin-container">
