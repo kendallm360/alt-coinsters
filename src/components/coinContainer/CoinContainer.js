@@ -5,19 +5,19 @@ import Coin from "../coin/Coin";
 
 const CoinContainer = () => {
   const [coinList, setCoinList] = useState([]);
-  const marketMovers = ["BTC", "ETH"]; //"USDT", "USDC", "XRP"
-  const topFifteen = ["ADA", "UNI", "XLM", "SOL", "GRT"]; // "DOGE", "DOT",
+  // const marketMovers = ["BTC", "ETH"]; //"USDT", "USDC", "XRP"
+  const topFifteen = ["GRT"]; // "DOGE", "DOT", "ADA", "UNI", "XLM", "SOL"
 
   useEffect(() => {});
 
-  let test = marketMovers.forEach((coin) => {
-    fetchCoin(coin).then((data) => {
-      //   console.log(data.ticker);
-      setCoinList(data.results);
-      //   coinList.push(data);
-    });
-    console.log(coinList);
-  });
+  // let test = marketMovers.forEach((coin) => {
+  //   fetchCoin(coin).then((data) => {
+  //     //   console.log(data.ticker);
+  //     setCoinList(data.results);
+  //     //   coinList.push(data);
+  //   });
+  //   console.log(coinList);
+  // });
 
   return (
     <div className="coin-container">
