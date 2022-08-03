@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { fetchCoin } from "../../apiCalls";
+import { fetchCoinPreviousDay } from "../../apiCalls";
 import "./Coin.css";
 
 const Coin = () => {
   const [coin, setCoin] = useState([]);
+  const [symbol, setSymbol] = useState("");
 
   //   useEffect(() => {
-  //     fetchCoin("GRT").then((data) => {
+  //     fetchCoinPreviousDay("GRT").then((data) => {
   //       setCoin(data.results[0]);
+  //       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
   //     });
   //   }, []);
 
@@ -16,7 +18,7 @@ const Coin = () => {
       <header className="coin-header">
         {/* <img src="" /> */}
         <h2>Coin Name</h2>
-        <h3>Ticker</h3>
+        <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
       </header>
       {/* <div className="chart">
