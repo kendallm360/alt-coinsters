@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchCoin } from "../../apiCalls";
 import "./CoinContainer.css";
+import Coin from "../coin/Coin";
 
 const CoinContainer = () => {
   const [coinList, setCoinList] = useState([]);
@@ -21,10 +22,7 @@ const CoinContainer = () => {
   return (
     <div className="coin-container">
       Description of tab view
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
+      <Coin />
     </div>
   );
 };

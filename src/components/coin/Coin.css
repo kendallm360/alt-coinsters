@@ -1,0 +1,9 @@
+.coin-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-details {
+  display: flex;
+  flex-direction: row;
+}
