@@ -2,3 +2,9 @@
   border: solid 3px red;
   height: 80vh;
 }
+
+.tab-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

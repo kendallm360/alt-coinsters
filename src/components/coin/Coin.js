@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay } from "../../apiCalls";
+import PropTypes from "prop-types";
 import "./Coin.css";
 
-const Coin = () => {
+const Coin = ({ ticker }) => {
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
 
-  //   useEffect(() => {
-  //     fetchCoinPreviousDay("GRT").then((data) => {
-  //       setCoin(data.results[0]);
-  //       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-  //     });
-  //   }, []);
+  useEffect(() => {
+    fetchCoinPreviousDay(ticker).then((data) => {
+      setCoin(data.results[0]);
+      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+    });
+  }, []);
+
+  const handleRender = (event) => {
+    fetchCoinPreviousDay(event.target.value).then((data) => {
+      setCoin(data.results[0]);
+      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+    });
+  };
 
   return (
     <div className="coin-wrapper">
@@ -50,7 +58,20 @@ const Coin = () => {
         <h3>52W Low?</h3>
         <p>number</p> */}
       </section>
+      <button value={"BTC"} onClick={handleRender}>
+        handleBTC
+      </button>
+      <button value={"GRT"} onClick={handleRender}>
+        handleGRT
+      </button>
+      <button value={"DOT"} onClick={handleRender}>
+        handleDOT
+      </button>
     </div>
   );
 };
 export default Coin;
+
+Coin.propTypes = {
+  ticker: PropTypes.string,
+};
