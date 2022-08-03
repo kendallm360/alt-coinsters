@@ -4,15 +4,24 @@ import PropTypes from "prop-types";
 import "./Coin.css";
 
 const Coin = ({ ticker }) => {
+  const [coinName, setCoinName] = useState("");
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
+  const coins = ["DOGe", "CART", "BLah"];
 
   useEffect(() => {
     fetchCoinPreviousDay(ticker).then((data) => {
+      assignName();
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
   }, []);
+
+  const assignName = () => {
+    if (ticker === "LINK") {
+      setCoinName("ChainLink");
+    }
+  };
 
   const handleRender = (event) => {
     fetchCoinPreviousDay(event.target.value).then((data) => {
@@ -25,7 +34,7 @@ const Coin = ({ ticker }) => {
     <div className="coin-wrapper">
       <header className="coin-header">
         {/* <img src="" /> */}
-        <h2>Coin Name</h2>
+        <h2>Coin Name: {coinName}</h2>
         <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
       </header>

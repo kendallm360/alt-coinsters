@@ -78,7 +78,6 @@ const CoinContainer = () => {
         <h3>52W Low?</h3>
         <p>number</p> */}
       </section>
-      {/* <Coin /> */}
     </div>
   ) : (
     <Coin ticker={ticker} />
