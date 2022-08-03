@@ -6,13 +6,13 @@ const TabSelector = () => {
   return (
     <div className="tabs">
       <button className="tab-selector" onClick={handlePageView()}>
-        market-movers-tab{" "}
+        market-movers-tab
       </button>
       <button className="tab-selector" onClick={handlePageView()}>
-        top-fifteen-tab{" "}
+        top-fifteen-tab
       </button>
       <button className="tab-selector" onClick={handlePageView()}>
-        favorites-tab{" "}
+        favorites-tab
       </button>
     </div>
   );
