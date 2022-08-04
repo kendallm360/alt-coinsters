@@ -1,10 +1,34 @@
 import { useEffect, useState } from "react";
-import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
+import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
+import CoinDetails from "../coinDetails/CoinDetails";
+import { Link } from "react-router-dom";
+import CoinChart from "../chart/CoinChart";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  LineController,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 const CoinContainer = () => {
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    LineController,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  );
   const [ticker, setTicker] = useState("");
   const [coinName, setCoinName] = useState("");
   const [submitted, setSubmitted] = useState(true);
@@ -13,32 +37,80 @@ const CoinContainer = () => {
   const [annualVolume, setAnnualVolume] = useState(0);
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [chartOptions, setChartOptions] = useState({});
 
-  useEffect(() => {
-    fetchCoinPreviousDay("ETH").then((data) => {
-      setCoinName(assignName("ETH"));
-      setCoin(data.results[0]);
-      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchCoinPreviousDay("ETH").then((data) => {
+  //     setCoinName(assignName("ETH"));
+  //     setCoin(data.results[0]);
+  //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    fetchATH("ETH").then((data) => {
-      setAnnualHigh(
-        data.results
-          .map((day) => day.h)
-          .sort()
-          .pop()
-      );
-      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-      setAnnualVolume(
-        data.results
-          .map((day) => day.v)
-          .sort()
-          .pop()
-      );
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchAnnuals("ETH").then((data) => {
+  //     console.log(
+  //       data.results
+  //         .map((day) => day.h)
+  //         .sort()
+  //         .pop(),
+  //       "num of results"
+  //     );
+  //     setAnnualHigh(
+  //       data.results
+  //         .map((day) => day.h)
+  //         .sort()
+  //         .pop()
+  //     );
+  //     setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  //     setAnnualVolume(
+  //       data.results
+  //         .map((day) => day.v)
+  //         .sort()
+  //         .pop()
+  //     );
+  //     setChartData({
+  //       labels: [
+  //         "August",
+  //         "September",
+  //         "October",
+  //         "November",
+  //         "December",
+  //         "January",
+  //         "February",
+  //         "March",
+  //         "April",
+  //         "May",
+  //         "June",
+  //         "July",
+  //         "August,",
+  //       ],
+  //       datasets: [
+  //         {
+  //           label: "EOD Close",
+  //           data: data.results.map((day) => day.h),
+  //           borderColor: "rgb(53, 162, 235)",
+  //         },
+  //       ],
+  //     });
+  //     setChartOptions({
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: "top",
+  //         },
+  //         title: {
+  //           display: true,
+  //           text: "Closes",
+  //         },
+  //       },
+  //     });
+  //   });
+  // }, []);
 
   const handleSubmit = () => {
     setSubmitted(false);
@@ -47,7 +119,7 @@ const CoinContainer = () => {
   const handleTickerSelect = (event) => {
     setTicker(event.target.value);
   };
-
+  // console.log(chartData, "test");
   return submitted ? (
     <div className="coin-container">
       <div className="tab-selector">
@@ -74,7 +146,9 @@ const CoinContainer = () => {
           <option value={"SHIB"}>SHIBA INU</option>
           <option value={"ETH"}>ETHEREUM</option>
         </select>
-        <button onClick={handleSubmit}>Try?</button>
+        <Link to={`/coin/${ticker}`}>
+          <button onClick={handleSubmit}>Try?</button>
+        </Link>
       </div>
       <header className="coin-header">
         {/* <img src="" /> */}
@@ -82,41 +156,16 @@ const CoinContainer = () => {
         <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
       </header>
-      {/* <div className="chart">
-        <p>maybe?</p>
-      </div> */}
-      <section className="coin-details">
-        {/* <h3>Market Cap</h3>
-        <p>number</p> */}
-        <div className="volume">
-          <h3>Previous Day's Volume</h3>
-          <p>{Math.round(coin.v)}...people</p>
-        </div>
-        <div className="high">
-          <h3>Previous Day's High</h3>
-          <p>${coin.h}</p>
-        </div>
-        <div className="low">
-          <h3>Previous Day's Low</h3>
-          <p>${coin.l}</p>
-        </div>
-        <div className="close">
-          <h3>Previous Day's close</h3>
-          <p>${coin.c}</p>
-        </div>
-        <div className="annual-high">
-          <h3>52W high?</h3>
-          <p>{annualHigh}</p>
-        </div>
-        <div className="annual-low">
-          <h3>52W Low?</h3>
-          <p>{annualLow}</p>
-        </div>
-        <div className="annual-volume">
-          <h3>52W Volume?</h3>
-          <p>{Math.round(annualVolume)}</p>
-        </div>
-      </section>
+      <div className="chart">
+        {/* <p>maybe?</p> */}
+        <CoinChart chartData={chartData} chartOptions={chartOptions} />
+      </div>
+      <CoinDetails
+        coin={coin}
+        annualHigh={annualHigh}
+        annualLow={annualLow}
+        annualVolume={annualVolume}
+      />
     </div>
   ) : (
     <Coin ticker={ticker} />

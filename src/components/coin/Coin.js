@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
+import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import PropTypes from "prop-types";
 import { assignName } from "../../helperFunctions";
+import CoinDetails from "../coinDetails/CoinDetails";
+import CoinChart from "../chart/CoinChart";
 import "./Coin.css";
+import { Link } from "react-router-dom";
 
 const Coin = ({ ticker }) => {
   const [coinName, setCoinName] = useState("");
@@ -12,32 +15,73 @@ const Coin = ({ ticker }) => {
   const [annualHigh, setAnnualHigh] = useState(0);
   const [annualLow, setAnnualLow] = useState(0);
   const [annualVolume, setAnnualVolume] = useState(0);
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [chartOptions, setChartOptions] = useState({});
 
-  useEffect(() => {
-    setCoinName(assignName(ticker));
-    fetchCoinPreviousDay(ticker).then((data) => {
-      setCoin(data.results[0]);
-      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-    });
-  }, []);
+  //   useEffect(() => {
+  //     setCoinName(assignName(ticker));
+  //     fetchCoinPreviousDay(ticker).then((data) => {
+  //       setCoin(data.results[0]);
+  //       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+  //     });
+  //   }, []);
 
-  useEffect(() => {
-    fetchATH(ticker).then((data) => {
-      setAnnualHigh(
-        data.results
-          .map((day) => day.h)
-          .sort()
-          .pop()
-      );
-      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-      setAnnualVolume(
-        data.results
-          .map((day) => day.v)
-          .sort()
-          .pop()
-      );
-    });
-  }, []);
+  //   useEffect(() => {
+  //     fetchAnnuals(ticker).then((data) => {
+  //       setAnnualHigh(
+  //         data.results
+  //           .map((day) => day.h)
+  //           .sort()
+  //           .pop()
+  //       );
+  //       setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  //       setAnnualVolume(
+  //         data.results
+  //           .map((day) => day.v)
+  //           .sort()
+  //           .pop()
+  //       );
+  //       setChartData({
+  //         labels: [
+  //           "August",
+  //           "September",
+  //           "October",
+  //           "November",
+  //           "December",
+  //           "January",
+  //           "February",
+  //           "March",
+  //           "April",
+  //           "May",
+  //           "June",
+  //           "July",
+  //           "August,",
+  //         ],
+  //         datasets: [
+  //           {
+  //             label: "EOD Close",
+  //             data: data.results.map((day) => day.h),
+  //             borderColor: "rgb(53, 162, 235)",
+  //           },
+  //         ],
+  //       });
+  //       setChartOptions({
+  //         responsive: true,
+  //         plugins: {
+  //           legend: {
+  //             position: "top",
+  //           },
+  //           title: {
+  //             display: true,
+  //             text: "Closes",
+  //           },
+  //         },
+  //       });
+  //     });
+  //   }, []);
 
   const handleRender = () => {
     setCoinName(assignName(alt));
@@ -45,7 +89,7 @@ const Coin = ({ ticker }) => {
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
-    fetchATH(alt).then((data) => {
+    fetchAnnuals(alt).then((data) => {
       setAnnualHigh(
         data.results
           .map((day) => day.h)
@@ -59,6 +103,42 @@ const Coin = ({ ticker }) => {
           .sort()
           .pop()
       );
+      setChartData({
+        labels: [
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August,",
+        ],
+        datasets: [
+          {
+            label: "EOD Close",
+            data: data.results.map((day) => day.h),
+            borderColor: "rgb(53, 162, 235)",
+          },
+        ],
+      });
+      setChartOptions({
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Closes",
+          },
+        },
+      });
     });
   };
 
@@ -74,41 +154,16 @@ const Coin = ({ ticker }) => {
         <h3>Symbol: {symbol.length > 1 ? symbol : `USD${symbol}`}</h3>
         <button className="favorite">Favorite</button>
       </header>
-      {/* <div className="chart">
-        <p>maybe?</p>
-      </div> */}
-      <section className="coin-details">
-        {/* <h3>Market Cap</h3>
-        <p>number</p> */}
-        <div className="volume">
-          <h3>Previous Day's Volume</h3>
-          <p>{Math.round(coin.v)}...people</p>
-        </div>
-        <div className="high">
-          <h3>Previous Day's High</h3>
-          <p>${coin.h}</p>
-        </div>
-        <div className="low">
-          <h3>Previous Day's Low</h3>
-          <p>${coin.l}</p>
-        </div>
-        <div className="close">
-          <h3>Previous Day's close</h3>
-          <p>${coin.c}</p>
-        </div>
-        <div className="annual-high">
-          <h3>52W high?</h3>
-          <p>{annualHigh}</p>
-        </div>
-        <div className="annual-low">
-          <h3>52W Low?</h3>
-          <p>{annualLow}</p>
-        </div>
-        <div className="annual-volume">
-          <h3>52W Volume?</h3>
-          <p>{Math.round(annualVolume)}</p>
-        </div>
-      </section>
+      <div className="chart">
+        <CoinChart chartData={chartData} chartOptions={chartOptions} />
+      </div>
+      <CoinDetails
+        coin={coin}
+        annualHigh={annualHigh}
+        annualLow={annualLow}
+        setAnnualVolume={annualVolume}
+      />
+
       <div className="other-coins">
         <select value={alt} onChange={handleAlt}>
           <option>--Choose A Top Alt--</option>
@@ -133,7 +188,9 @@ const Coin = ({ ticker }) => {
           <option value={"CHZ"}>CHILIZ</option>
           <option value={"SHIB"}>SHIBA INU</option>
         </select>
-        <button onClick={handleRender}>test?</button>
+        <Link to={`/coin/${alt}`}>
+          <button onClick={handleRender}>test?</button>
+        </Link>
       </div>
     </div>
   );
