@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCoinPreviousDay } from "../../apiCalls";
+import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
 import PropTypes from "prop-types";
 import { assignName } from "../../helperFunctions";
 import "./Coin.css";
@@ -9,6 +9,9 @@ const Coin = ({ ticker }) => {
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
   const [alt, setAlt] = useState("");
+  const [annualHigh, setAnnualHigh] = useState(0);
+  const [annualLow, setAnnualLow] = useState(0);
+  const [annualVolume, setAnnualVolume] = useState(0);
 
   useEffect(() => {
     setCoinName(assignName(ticker));
@@ -18,11 +21,44 @@ const Coin = ({ ticker }) => {
     });
   }, []);
 
+  useEffect(() => {
+    fetchATH(ticker).then((data) => {
+      setAnnualHigh(
+        data.results
+          .map((day) => day.h)
+          .sort()
+          .pop()
+      );
+      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+      setAnnualVolume(
+        data.results
+          .map((day) => day.v)
+          .sort()
+          .pop()
+      );
+    });
+  }, []);
+
   const handleRender = () => {
     setCoinName(assignName(alt));
     fetchCoinPreviousDay(alt).then((data) => {
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+    });
+    fetchATH(alt).then((data) => {
+      setAnnualHigh(
+        data.results
+          .map((day) => day.h)
+          .sort()
+          .pop()
+      );
+      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+      setAnnualVolume(
+        data.results
+          .map((day) => day.v)
+          .sort()
+          .pop()
+      );
     });
   };
 
@@ -44,11 +80,9 @@ const Coin = ({ ticker }) => {
       <section className="coin-details">
         {/* <h3>Market Cap</h3>
         <p>number</p> */}
-        {/* <h3>Volume</h3>
-        <p>number</p> */}
         <div className="volume">
           <h3>Previous Day's Volume</h3>
-          <p>{coin.v}...people</p>
+          <p>{Math.round(coin.v)}...people</p>
         </div>
         <div className="high">
           <h3>Previous Day's High</h3>
@@ -62,14 +96,23 @@ const Coin = ({ ticker }) => {
           <h3>Previous Day's close</h3>
           <p>${coin.c}</p>
         </div>
-        {/* <h3>52W high?</h3>
-        <p>number</p>
-        <h3>52W Low?</h3>
-        <p>number</p> */}
+        <div className="annual-high">
+          <h3>52W high?</h3>
+          <p>{annualHigh}</p>
+        </div>
+        <div className="annual-low">
+          <h3>52W Low?</h3>
+          <p>{annualLow}</p>
+        </div>
+        <div className="annual-volume">
+          <h3>52W Volume?</h3>
+          <p>{Math.round(annualVolume)}</p>
+        </div>
       </section>
       <div className="other-coins">
         <select value={alt} onChange={handleAlt}>
           <option>--Choose A Top Alt--</option>
+          <option value={"BTC"}>BITCOIN</option>
           <option value={"ETH"}>ETHEREUM</option>
           <option value={"USDT"}>TETHER</option>
           <option value={"USDC"}>USD COIN</option>
