@@ -10,28 +10,35 @@ const CoinContainer = () => {
   const [submitted, setSubmitted] = useState(true);
   const [annualHigh, setAnnualHigh] = useState(0);
   const [annualLow, setAnnualLow] = useState(0);
+  const [annualVolume, setAnnualVolume] = useState(0);
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
 
-  // useEffect(() => {
-  //   fetchCoinPreviousDay("ETH").then((data) => {
-  //     setCoinName(assignName("ETH"));
-  //     setCoin(data.results[0]);
-  //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetchCoinPreviousDay("ETH").then((data) => {
+      setCoinName(assignName("ETH"));
+      setCoin(data.results[0]);
+      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   fetchATH("ETH").then((data) => {
-  //     setAnnualHigh(
-  //       data.results
-  //         .map((day) => day.h)
-  //         .sort()
-  //         .pop()
-  //     );
-  //     setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetchATH("ETH").then((data) => {
+      setAnnualHigh(
+        data.results
+          .map((day) => day.h)
+          .sort()
+          .pop()
+      );
+      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+      setAnnualVolume(
+        data.results
+          .map((day) => day.v)
+          .sort()
+          .pop()
+      );
+    });
+  }, []);
 
   const handleSubmit = () => {
     setSubmitted(false);
@@ -83,7 +90,7 @@ const CoinContainer = () => {
         <p>number</p> */}
         <div className="volume">
           <h3>Previous Day's Volume</h3>
-          <p>{coin.v}...people</p>
+          <p>{Math.round(coin.v)}...people</p>
         </div>
         <div className="high">
           <h3>Previous Day's High</h3>
@@ -104,6 +111,10 @@ const CoinContainer = () => {
         <div className="annual-low">
           <h3>52W Low?</h3>
           <p>{annualLow}</p>
+        </div>
+        <div className="annual-volume">
+          <h3>52W Volume?</h3>
+          <p>{Math.round(annualVolume)}</p>
         </div>
       </section>
     </div>

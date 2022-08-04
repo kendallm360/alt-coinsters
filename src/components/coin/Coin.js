@@ -11,6 +11,7 @@ const Coin = ({ ticker }) => {
   const [alt, setAlt] = useState("");
   const [annualHigh, setAnnualHigh] = useState(0);
   const [annualLow, setAnnualLow] = useState(0);
+  const [annualVolume, setAnnualVolume] = useState(0);
 
   useEffect(() => {
     setCoinName(assignName(ticker));
@@ -29,6 +30,12 @@ const Coin = ({ ticker }) => {
           .pop()
       );
       setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+      setAnnualVolume(
+        data.results
+          .map((day) => day.v)
+          .sort()
+          .pop()
+      );
     });
   }, []);
 
@@ -46,6 +53,12 @@ const Coin = ({ ticker }) => {
           .pop()
       );
       setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+      setAnnualVolume(
+        data.results
+          .map((day) => day.v)
+          .sort()
+          .pop()
+      );
     });
   };
 
@@ -69,7 +82,7 @@ const Coin = ({ ticker }) => {
         <p>number</p> */}
         <div className="volume">
           <h3>Previous Day's Volume</h3>
-          <p>{coin.v}...people</p>
+          <p>{Math.round(coin.v)}...people</p>
         </div>
         <div className="high">
           <h3>Previous Day's High</h3>
@@ -90,6 +103,10 @@ const Coin = ({ ticker }) => {
         <div className="annual-low">
           <h3>52W Low?</h3>
           <p>{annualLow}</p>
+        </div>
+        <div className="annual-volume">
+          <h3>52W Volume?</h3>
+          <p>{Math.round(annualVolume)}</p>
         </div>
       </section>
       <div className="other-coins">
