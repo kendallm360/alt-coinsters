@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
 import PropTypes from "prop-types";
 import { assignName } from "../../helperFunctions";
+import CoinDetails from "../coinDetails/CoinDetails";
 import "./Coin.css";
 
 const Coin = ({ ticker }) => {
@@ -77,38 +78,13 @@ const Coin = ({ ticker }) => {
       {/* <div className="chart">
         <p>maybe?</p>
       </div> */}
-      <section className="coin-details">
-        {/* <h3>Market Cap</h3>
-        <p>number</p> */}
-        <div className="volume">
-          <h3>Previous Day's Volume</h3>
-          <p>{Math.round(coin.v)}...people</p>
-        </div>
-        <div className="high">
-          <h3>Previous Day's High</h3>
-          <p>${coin.h}</p>
-        </div>
-        <div className="low">
-          <h3>Previous Day's Low</h3>
-          <p>${coin.l}</p>
-        </div>
-        <div className="close">
-          <h3>Previous Day's close</h3>
-          <p>${coin.c}</p>
-        </div>
-        <div className="annual-high">
-          <h3>52W high?</h3>
-          <p>{annualHigh}</p>
-        </div>
-        <div className="annual-low">
-          <h3>52W Low?</h3>
-          <p>{annualLow}</p>
-        </div>
-        <div className="annual-volume">
-          <h3>52W Volume?</h3>
-          <p>{Math.round(annualVolume)}</p>
-        </div>
-      </section>
+      <CoinDetails
+        coin={coin}
+        annualHigh={annualHigh}
+        annualLow={annualLow}
+        setAnnualVolume={annualVolume}
+      />
+
       <div className="other-coins">
         <select value={alt} onChange={handleAlt}>
           <option>--Choose A Top Alt--</option>
