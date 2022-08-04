@@ -5,6 +5,8 @@ import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
 import { Link } from "react-router-dom";
+import CoinChart from "../chart/CoinChart";
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>;
 
 const CoinContainer = () => {
   const [ticker, setTicker] = useState("");
@@ -24,23 +26,23 @@ const CoinContainer = () => {
     });
   }, []);
 
-  useEffect(() => {
-    fetchATH("ETH").then((data) => {
-      setAnnualHigh(
-        data.results
-          .map((day) => day.h)
-          .sort()
-          .pop()
-      );
-      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-      setAnnualVolume(
-        data.results
-          .map((day) => day.v)
-          .sort()
-          .pop()
-      );
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchATH("ETH").then((data) => {
+  //     setAnnualHigh(
+  //       data.results
+  //         .map((day) => day.h)
+  //         .sort()
+  //         .pop()
+  //     );
+  //     setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  //     setAnnualVolume(
+  //       data.results
+  //         .map((day) => day.v)
+  //         .sort()
+  //         .pop()
+  //     );
+  //   });
+  // }, []);
 
   const handleSubmit = () => {
     setSubmitted(false);
@@ -86,9 +88,11 @@ const CoinContainer = () => {
         <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
       </header>
-      {/* <div className="chart">
-        <p>maybe?</p>
-      </div> */}
+      <div className="chart">
+        {/* <p>maybe?</p> */}
+        <CoinChart />
+        <canvas id="myChart"></canvas>
+      </div>
       <CoinDetails
         coin={coin}
         annualHigh={annualHigh}
