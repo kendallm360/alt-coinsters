@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay } from "../../apiCalls";
+import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 
@@ -8,12 +9,14 @@ const CoinContainer = () => {
   // const marketMovers = ["BTC", "ETH"]; //"USDT", "USDC", "XRP"
   const topFifteen = ["GRT"]; // "DOGE", "DOT", "ADA", "UNI", "XLM", "SOL"
   const [ticker, setTicker] = useState("");
+  const [coinName, setCoinName] = useState("");
   const [submitted, setSubmitted] = useState(true);
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
 
   // useEffect(() => {
   //   fetchCoinPreviousDay("ETH").then((data) => {
+  //     setCoinName(assignName("ETH"));
   //     setCoin(data.results[0]);
   //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
   //   });
@@ -45,7 +48,7 @@ const CoinContainer = () => {
       </div>
       <header className="coin-header">
         {/* <img src="" /> */}
-        <h2>Coin Name</h2>
+        <h2>Coin Name: {coinName}</h2>
         <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
       </header>

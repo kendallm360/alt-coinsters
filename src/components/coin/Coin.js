@@ -1,30 +1,25 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay } from "../../apiCalls";
 import PropTypes from "prop-types";
+import { assignName } from "../../helperFunctions";
 import "./Coin.css";
 
 const Coin = ({ ticker }) => {
   const [coinName, setCoinName] = useState("");
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
-  const coins = ["DOGe", "CART", "BLah"];
 
   useEffect(() => {
+    setCoinName(assignName(ticker));
     fetchCoinPreviousDay(ticker).then((data) => {
-      assignName();
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
   }, []);
 
-  const assignName = () => {
-    if (ticker === "LINK") {
-      setCoinName("ChainLink");
-    }
-  };
-
   const handleRender = (event) => {
     fetchCoinPreviousDay(event.target.value).then((data) => {
+      setCoinName(assignName(ticker));
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });

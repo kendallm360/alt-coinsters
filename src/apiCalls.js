@@ -7,7 +7,4 @@ const fetchCoinPreviousDay = (symbol) => {
   //   ("  https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/tickers?apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4");
 };
 
-// const setName = (ticker) => {
-//   ticker === "ETH" && setCoinName("Ethereum");
-// };
 export { fetchCoinPreviousDay };
