@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
+import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import PropTypes from "prop-types";
 import { assignName } from "../../helperFunctions";
 import CoinDetails from "../coinDetails/CoinDetails";
@@ -24,7 +24,7 @@ const Coin = ({ ticker, tickerSymbol }) => {
   //   }, []);
 
   //   useEffect(() => {
-  //     fetchATH(ticker).then((data) => {
+  //     fetchAnnuals(ticker).then((data) => {
   //       setAnnualHigh(
   //         data.results
   //           .map((day) => day.h)
@@ -47,7 +47,7 @@ const Coin = ({ ticker, tickerSymbol }) => {
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
-    fetchATH(alt).then((data) => {
+    fetchAnnuals(alt).then((data) => {
       setAnnualHigh(
         data.results
           .map((day) => day.h)

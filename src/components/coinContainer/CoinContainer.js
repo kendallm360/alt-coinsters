@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
+import {
+  fetchCoinPreviousDay,
+  fetchAnnuals,
+  fetchThirty,
+} from "../../apiCalls";
 import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
@@ -17,10 +21,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
-{
-  /* <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>; */
-}
 
 const CoinContainer = () => {
   ChartJS.register(
@@ -55,6 +55,46 @@ const CoinContainer = () => {
   const [chartOptions, setChartOptions] = useState({});
 
   // useEffect(() => {
+  //   fetchThirty("ETH").then((data) => {
+  //     setChartData({
+  //       labels: [
+  //         "January",
+  //         "February",
+  //         "March",
+  //         "April",
+  //         "May",
+  //         "June",
+  //         "July",
+  //         "August",
+  //         "September",
+  //         "October",
+  //         "November",
+  //         "December",
+  //       ],
+  //       datasets: [
+  //         {
+  //           label: "EOD Close",
+  //           data: [data.results.map((day) => day.c)],
+  //           borderColor: "rgb(53, 162, 235)",
+  //         },
+  //       ],
+  //     });
+  //     setChartOptions({
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: "top",
+  //         },
+  //         title: {
+  //           display: true,
+  //           text: "Closes",
+  //         },
+  //       },
+  //     });
+  //   });
+  // });
+
+  // useEffect(() => {
   //   fetchCoinPreviousDay("ETH").then((data) => {
   //     setCoinName(assignName("ETH"));
   //     setCoin(data.results[0]);
@@ -62,70 +102,24 @@ const CoinContainer = () => {
   //   });
   // }, []);
 
-  useEffect(() => {
-    fetchATH("ETH").then((data) => {
-      // console.log(data.results)
-      setAnnualHigh(
-        data.results
-          .map((day) => day.h)
-          .sort()
-          .pop()
-      );
-      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-      setAnnualVolume(
-        data.results
-          .map((day) => day.v)
-          .sort()
-          .pop()
-      );
-      setChartData({
-        // labels: [data.results.map((day) => day.c)],
-        labels: [
-          "Jan",
-          "Fed",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ],
-        datasets: [
-          {
-            label: "EOD Close",
-            // data: [data.results.map((day) => day.c)],
-            data: [
-              11, 32, 34, 1, 27, 3, 44, 5, 46, 7, 8, 9, 0, 11, 11, 44, 22, 33,
-              334, 212, 42, 1, 2,
-            ],
-
-            borderColor: "rgb(53, 162, 235)",
-          },
-        ],
-      });
-      setChartOptions({
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-          title: {
-            display: true,
-            text: "Closes",
-          },
-        },
-      });
-      // data.results
-      // .map((day) => {
-      //   console.log(day);
-      //   return day;
-      // })
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchAnnuals("ETH").then((data) => {
+  // console.log(data.results)
+  // setAnnualHigh(
+  //   data.results
+  //     .map((day) => day.h)
+  //     .sort()
+  //     .pop()
+  // );
+  // setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  // setAnnualVolume(
+  //   data.results
+  //     .map((day) => day.v)
+  //     .sort()
+  //     .pop()
+  // );
+  //   });
+  // }, []);
 
   const handleSubmit = () => {
     setSubmitted(false);
@@ -174,7 +168,6 @@ const CoinContainer = () => {
       <div className="chart">
         {/* <p>maybe?</p> */}
         <CoinChart chartData={chartData} chartOptions={chartOptions} />
-        {/* <canvas id="myChart"></canvas> */}
       </div>
       <CoinDetails
         coin={coin}
