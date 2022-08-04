@@ -1,6 +1,5 @@
 import "./App.css";
 import NavBar from "../navBar/NavBar";
-import TabSelector from "../tabSelector/TabSelector";
 import CoinContainer from "../coinContainer/CoinContainer";
 import { Route } from "react-router-dom";
 import Coin from "../coin/Coin";
@@ -22,7 +21,6 @@ const App = () => {
       <Route exact path="/">
         <>
           {/* <CoinChart /> */}
-          {/* <TabSelector /> */}
           <CoinContainer />
         </>
       </Route>

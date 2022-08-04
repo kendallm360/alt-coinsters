@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  fetchCoinPreviousDay,
-  fetchAnnuals,
-  fetchThirty,
-} from "../../apiCalls";
+import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
@@ -44,20 +40,46 @@ const CoinContainer = () => {
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
-    // labels: coin.map((day) => day.t),
-    // datasets: [
-    //   {
-    //     label: "Close Prices",
-    //     data: coin.map((day) => day.c),
-    //   },
-    // ],
   });
   const [chartOptions, setChartOptions] = useState({});
 
   // useEffect(() => {
-  //   fetchThirty("ETH").then((data) => {
+  //   fetchCoinPreviousDay("ETH").then((data) => {
+  //     setCoinName(assignName("ETH"));
+  //     setCoin(data.results[0]);
+  //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchAnnuals("ETH").then((data) => {
+  //     console.log(
+  //       data.results
+  //         .map((day) => day.h)
+  //         .sort()
+  //         .pop(),
+  //       "num of results"
+  //     );
+  //     setAnnualHigh(
+  //       data.results
+  //         .map((day) => day.h)
+  //         .sort()
+  //         .pop()
+  //     );
+  //     setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  //     setAnnualVolume(
+  //       data.results
+  //         .map((day) => day.v)
+  //         .sort()
+  //         .pop()
+  //     );
   //     setChartData({
   //       labels: [
+  //         "August",
+  //         "September",
+  //         "October",
+  //         "November",
+  //         "December",
   //         "January",
   //         "February",
   //         "March",
@@ -65,16 +87,12 @@ const CoinContainer = () => {
   //         "May",
   //         "June",
   //         "July",
-  //         "August",
-  //         "September",
-  //         "October",
-  //         "November",
-  //         "December",
+  //         "August,",
   //       ],
   //       datasets: [
   //         {
   //           label: "EOD Close",
-  //           data: [data.results.map((day) => day.c)],
+  //           data: data.results.map((day) => day.h),
   //           borderColor: "rgb(53, 162, 235)",
   //         },
   //       ],
@@ -91,33 +109,6 @@ const CoinContainer = () => {
   //         },
   //       },
   //     });
-  //   });
-  // });
-
-  // useEffect(() => {
-  //   fetchCoinPreviousDay("ETH").then((data) => {
-  //     setCoinName(assignName("ETH"));
-  //     setCoin(data.results[0]);
-  //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchAnnuals("ETH").then((data) => {
-  // console.log(data.results)
-  // setAnnualHigh(
-  //   data.results
-  //     .map((day) => day.h)
-  //     .sort()
-  //     .pop()
-  // );
-  // setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-  // setAnnualVolume(
-  //   data.results
-  //     .map((day) => day.v)
-  //     .sort()
-  //     .pop()
-  // );
   //   });
   // }, []);
 

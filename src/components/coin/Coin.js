@@ -3,10 +3,11 @@ import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import PropTypes from "prop-types";
 import { assignName } from "../../helperFunctions";
 import CoinDetails from "../coinDetails/CoinDetails";
+import CoinChart from "../chart/CoinChart";
 import "./Coin.css";
 import { Link } from "react-router-dom";
 
-const Coin = ({ ticker, tickerSymbol }) => {
+const Coin = ({ ticker }) => {
   const [coinName, setCoinName] = useState("");
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
@@ -14,6 +15,11 @@ const Coin = ({ ticker, tickerSymbol }) => {
   const [annualHigh, setAnnualHigh] = useState(0);
   const [annualLow, setAnnualLow] = useState(0);
   const [annualVolume, setAnnualVolume] = useState(0);
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [chartOptions, setChartOptions] = useState({});
 
   //   useEffect(() => {
   //     setCoinName(assignName(ticker));
@@ -38,6 +44,42 @@ const Coin = ({ ticker, tickerSymbol }) => {
   //           .sort()
   //           .pop()
   //       );
+  //       setChartData({
+  //         labels: [
+  //           "August",
+  //           "September",
+  //           "October",
+  //           "November",
+  //           "December",
+  //           "January",
+  //           "February",
+  //           "March",
+  //           "April",
+  //           "May",
+  //           "June",
+  //           "July",
+  //           "August,",
+  //         ],
+  //         datasets: [
+  //           {
+  //             label: "EOD Close",
+  //             data: data.results.map((day) => day.h),
+  //             borderColor: "rgb(53, 162, 235)",
+  //           },
+  //         ],
+  //       });
+  //       setChartOptions({
+  //         responsive: true,
+  //         plugins: {
+  //           legend: {
+  //             position: "top",
+  //           },
+  //           title: {
+  //             display: true,
+  //             text: "Closes",
+  //           },
+  //         },
+  //       });
   //     });
   //   }, []);
 
@@ -61,6 +103,42 @@ const Coin = ({ ticker, tickerSymbol }) => {
           .sort()
           .pop()
       );
+      setChartData({
+        labels: [
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August,",
+        ],
+        datasets: [
+          {
+            label: "EOD Close",
+            data: data.results.map((day) => day.h),
+            borderColor: "rgb(53, 162, 235)",
+          },
+        ],
+      });
+      setChartOptions({
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Closes",
+          },
+        },
+      });
     });
   };
 
@@ -76,9 +154,9 @@ const Coin = ({ ticker, tickerSymbol }) => {
         <h3>Symbol: {symbol.length > 1 ? symbol : `USD${symbol}`}</h3>
         <button className="favorite">Favorite</button>
       </header>
-      {/* <div className="chart">
-        <p>maybe?</p>
-    </div> */}
+      <div className="chart">
+        <CoinChart chartData={chartData} chartOptions={chartOptions} />
+      </div>
       <CoinDetails
         coin={coin}
         annualHigh={annualHigh}
