@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="App">
       <NavBar />
-      <TabSelector />
+      {/* <TabSelector /> */}
       <CoinContainer />
     </div>
   );

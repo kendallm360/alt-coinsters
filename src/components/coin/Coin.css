@@ -1,0 +1,21 @@
+.coin-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.coin-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chart-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.coin-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
