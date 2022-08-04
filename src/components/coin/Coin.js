@@ -8,6 +8,7 @@ const Coin = ({ ticker }) => {
   const [coinName, setCoinName] = useState("");
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
+  const [alt, setAlt] = useState("");
 
   useEffect(() => {
     setCoinName(assignName(ticker));
@@ -17,12 +18,16 @@ const Coin = ({ ticker }) => {
     });
   }, []);
 
-  const handleRender = (event) => {
-    fetchCoinPreviousDay(event.target.value).then((data) => {
-      setCoinName(assignName(event.target.value));
+  const handleRender = () => {
+    setCoinName(assignName(alt));
+    fetchCoinPreviousDay(alt).then((data) => {
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
+  };
+
+  const handleAlt = (event) => {
+    setAlt(event.target.value);
   };
 
   return (
@@ -30,7 +35,7 @@ const Coin = ({ ticker }) => {
       <header className="coin-header">
         {/* <img src="" /> */}
         <h2>Coin Name: {coinName}</h2>
-        <h3>Symbol: {symbol}</h3>
+        <h3>Symbol: {symbol.length > 1 ? symbol : `USD${symbol}`}</h3>
         <button className="favorite">Favorite</button>
       </header>
       {/* <div className="chart">
@@ -62,15 +67,31 @@ const Coin = ({ ticker }) => {
         <h3>52W Low?</h3>
         <p>number</p> */}
       </section>
-      <button value={"BTC"} onClick={handleRender}>
-        handleBTC
-      </button>
-      <button value={"GRT"} onClick={handleRender}>
-        handleGRT
-      </button>
-      <button value={"DOT"} onClick={handleRender}>
-        handleDOT
-      </button>
+      <div className="other-coins">
+        <select value={alt} onChange={handleAlt}>
+          <option>--Choose A Top Alt--</option>
+          <option value={"ETH"}>ETHEREUM</option>
+          <option value={"USDT"}>TETHER</option>
+          <option value={"USDC"}>USD COIN</option>
+          <option value={"ADA"}>CARDANO</option>
+          <option value={"UNI"}>UNISWAP</option>
+          <option value={"XLM"}>STELLAR</option>
+          <option value={"SOL"}>SOLANA</option>
+          <option value={"GRT"}>THE GRAPH</option>
+          <option value={"DOGE"}>DOGECOIN</option>
+          <option value={"XRP"}>RIPPLE</option>
+          <option value={"DOT"}>POLKADOT</option>
+          <option value={"LINK"}>LINK</option>
+          <option value={"MATIC"}>POLYGON</option>
+          <option value={"XTZ"}>TEZOS</option>
+          <option value={"ATOM"}>COSMOS</option>
+          <option value={"THETA"}>THETA NETWORK</option>
+          <option value={"XMR"}>MONERO</option>
+          <option value={"CHZ"}>CHILIZ</option>
+          <option value={"SHIB"}>SHIBA INU</option>
+        </select>
+        <button onClick={handleRender}>test?</button>
+      </div>
     </div>
   );
 };

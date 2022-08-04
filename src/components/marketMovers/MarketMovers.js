@@ -8,6 +8,10 @@ const MarketMovers = () => {
     setTicker(event.target.value);
   };
 
+  const handleSection = () => {
+    console.log("steve");
+  };
+
   return (
     <section className="market-movers">
       <div className="buttons">
@@ -18,6 +22,7 @@ const MarketMovers = () => {
           <option value={"USDT"}>TETHER</option>
           <option value={"USDC"}>USD COIN</option>
         </select>
+        <button onClick={handleSection}>Submit type</button>
       </div>
     </section>
   );

@@ -3,16 +3,11 @@ import { fetchCoinPreviousDay } from "../../apiCalls";
 import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
-import MarketMovers from "../marketMovers/MarketMovers";
 
 const CoinContainer = () => {
-  const [coinList, setCoinList] = useState([]);
-  // const marketMovers = ["BTC", "ETH"]; //"USDT", "USDC", "XRP"
-  const topFifteen = ["GRT"]; // "DOGE", "DOT", "ADA", "UNI", "XLM", "SOL"
   const [ticker, setTicker] = useState("");
   const [coinName, setCoinName] = useState("");
   const [submitted, setSubmitted] = useState(true);
-  const [mover, setMover] = useState(false);
 
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
@@ -27,26 +22,20 @@ const CoinContainer = () => {
 
   const handleSubmit = () => {
     setSubmitted(false);
-    setMover(true);
   };
 
   const handleTickerSelect = (event) => {
     setTicker(event.target.value);
   };
-  // mover && <MarketMovers />;
+
   return submitted ? (
     <div className="coin-container">
       <div className="tab-selector">
         <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-          <option>--Choose A Market Mover--</option>
-          <option value={true}>MArket mover</option>
-          {/* <option value={"ETH"}>ETHEREUM</option>
-          <option value={"USDT"}>TETHER</option>
-          <option value={"USDC"}>USD COIN</option> */}
-        </select>
-        {/* <MarketMovers /> */}
-        <select value={ticker} name={ticker} onChange={handleTickerSelect}>
           <option>--Choose A Top Alt--</option>
+          <option value={"ETH"}>ETHEREUM</option>
+          <option value={"USDT"}>TETHER</option>
+          <option value={"USDC"}>USD COIN</option>
           <option value={"ADA"}>CARDANO</option>
           <option value={"UNI"}>UNISWAP</option>
           <option value={"XLM"}>STELLAR</option>
@@ -103,8 +92,7 @@ const CoinContainer = () => {
       </section>
     </div>
   ) : (
-    // <Coin ticker={ticker} />
-    <MarketMovers />
+    <Coin ticker={ticker} />
   );
 };
 
