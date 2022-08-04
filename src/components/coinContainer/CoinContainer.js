@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCoinPreviousDay } from "../../apiCalls";
+import { fetchCoinPreviousDay, fetchATH } from "../../apiCalls";
 import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
@@ -8,7 +8,8 @@ const CoinContainer = () => {
   const [ticker, setTicker] = useState("");
   const [coinName, setCoinName] = useState("");
   const [submitted, setSubmitted] = useState(true);
-
+  const [annualHigh, setAnnualHigh] = useState(0);
+  const [annualLow, setAnnualLow] = useState(0);
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
 
@@ -17,6 +18,18 @@ const CoinContainer = () => {
   //     setCoinName(assignName("ETH"));
   //     setCoin(data.results[0]);
   //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchATH("ETH").then((data) => {
+  //     setAnnualHigh(
+  //       data.results
+  //         .map((day) => day.h)
+  //         .sort()
+  //         .pop()
+  //     );
+  //     setAnnualLow(data.results.map((day) => day.l).sort()[0]);
   //   });
   // }, []);
 
@@ -33,7 +46,7 @@ const CoinContainer = () => {
       <div className="tab-selector">
         <select value={ticker} name={ticker} onChange={handleTickerSelect}>
           <option>--Choose A Top Alt--</option>
-          <option value={"ETH"}>ETHEREUM</option>
+          <option value={"BTC"}>BITCOIN</option>
           <option value={"USDT"}>TETHER</option>
           <option value={"USDC"}>USD COIN</option>
           <option value={"ADA"}>CARDANO</option>
@@ -44,7 +57,7 @@ const CoinContainer = () => {
           <option value={"DOGE"}>DOGECOIN</option>
           <option value={"XRP"}>RIPPLE</option>
           <option value={"DOT"}>POLKADOT</option>
-          <option value={"LINK"}>LINK</option>
+          <option value={"LINK"}>CHAINLINK</option>
           <option value={"MATIC"}>POLYGON</option>
           <option value={"XTZ"}>TEZOS</option>
           <option value={"ATOM"}>COSMOS</option>
@@ -52,6 +65,7 @@ const CoinContainer = () => {
           <option value={"XMR"}>MONERO</option>
           <option value={"CHZ"}>CHILIZ</option>
           <option value={"SHIB"}>SHIBA INU</option>
+          <option value={"ETH"}>ETHEREUM</option>
         </select>
         <button onClick={handleSubmit}>Try?</button>
       </div>
@@ -66,8 +80,6 @@ const CoinContainer = () => {
       </div> */}
       <section className="coin-details">
         {/* <h3>Market Cap</h3>
-        <p>number</p> */}
-        {/* <h3>Volume</h3>
         <p>number</p> */}
         <div className="volume">
           <h3>Previous Day's Volume</h3>
@@ -85,10 +97,14 @@ const CoinContainer = () => {
           <h3>Previous Day's close</h3>
           <p>${coin.c}</p>
         </div>
-        {/* <h3>52W high?</h3>
-        <p>number</p>
-        <h3>52W Low?</h3>
-        <p>number</p> */}
+        <div className="annual-high">
+          <h3>52W high?</h3>
+          <p>{annualHigh}</p>
+        </div>
+        <div className="annual-low">
+          <h3>52W Low?</h3>
+          <p>{annualLow}</p>
+        </div>
       </section>
     </div>
   ) : (
