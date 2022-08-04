@@ -4,6 +4,7 @@ import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
+import { Link } from "react-router-dom";
 
 const CoinContainer = () => {
   const [ticker, setTicker] = useState("");
@@ -75,7 +76,9 @@ const CoinContainer = () => {
           <option value={"SHIB"}>SHIBA INU</option>
           <option value={"ETH"}>ETHEREUM</option>
         </select>
-        <button onClick={handleSubmit}>Try?</button>
+        <Link to={`/coin/${ticker}`}>
+          <button onClick={handleSubmit}>Try?</button>
+        </Link>
       </div>
       <header className="coin-header">
         {/* <img src="" /> */}

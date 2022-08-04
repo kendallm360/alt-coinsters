@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import { assignName } from "../../helperFunctions";
 import CoinDetails from "../coinDetails/CoinDetails";
 import "./Coin.css";
+import { Link } from "react-router-dom";
 
-const Coin = ({ ticker }) => {
+const Coin = ({ ticker, tickerSymbol }) => {
   const [coinName, setCoinName] = useState("");
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
@@ -14,31 +15,31 @@ const Coin = ({ ticker }) => {
   const [annualLow, setAnnualLow] = useState(0);
   const [annualVolume, setAnnualVolume] = useState(0);
 
-  useEffect(() => {
-    setCoinName(assignName(ticker));
-    fetchCoinPreviousDay(ticker).then((data) => {
-      setCoin(data.results[0]);
-      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-    });
-  }, []);
+  //   useEffect(() => {
+  //     setCoinName(assignName(ticker));
+  //     fetchCoinPreviousDay(ticker).then((data) => {
+  //       setCoin(data.results[0]);
+  //       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+  //     });
+  //   }, []);
 
-  useEffect(() => {
-    fetchATH(ticker).then((data) => {
-      setAnnualHigh(
-        data.results
-          .map((day) => day.h)
-          .sort()
-          .pop()
-      );
-      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-      setAnnualVolume(
-        data.results
-          .map((day) => day.v)
-          .sort()
-          .pop()
-      );
-    });
-  }, []);
+  //   useEffect(() => {
+  //     fetchATH(ticker).then((data) => {
+  //       setAnnualHigh(
+  //         data.results
+  //           .map((day) => day.h)
+  //           .sort()
+  //           .pop()
+  //       );
+  //       setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  //       setAnnualVolume(
+  //         data.results
+  //           .map((day) => day.v)
+  //           .sort()
+  //           .pop()
+  //       );
+  //     });
+  //   }, []);
 
   const handleRender = () => {
     setCoinName(assignName(alt));
@@ -77,7 +78,7 @@ const Coin = ({ ticker }) => {
       </header>
       {/* <div className="chart">
         <p>maybe?</p>
-      </div> */}
+    </div> */}
       <CoinDetails
         coin={coin}
         annualHigh={annualHigh}
@@ -109,7 +110,9 @@ const Coin = ({ ticker }) => {
           <option value={"CHZ"}>CHILIZ</option>
           <option value={"SHIB"}>SHIBA INU</option>
         </select>
-        <button onClick={handleRender}>test?</button>
+        <Link to={`/coin/${alt}`}>
+          <button onClick={handleRender}>test?</button>
+        </Link>
       </div>
     </div>
   );
