@@ -3,6 +3,7 @@ import { fetchCoinPreviousDay } from "../../apiCalls";
 import { assignName } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
+import MarketMovers from "../marketMovers/MarketMovers";
 
 const CoinContainer = () => {
   const [coinList, setCoinList] = useState([]);
@@ -11,6 +12,8 @@ const CoinContainer = () => {
   const [ticker, setTicker] = useState("");
   const [coinName, setCoinName] = useState("");
   const [submitted, setSubmitted] = useState(true);
+  const [mover, setMover] = useState(false);
+
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
 
@@ -24,25 +27,42 @@ const CoinContainer = () => {
 
   const handleSubmit = () => {
     setSubmitted(false);
+    setMover(true);
   };
 
   const handleTickerSelect = (event) => {
     setTicker(event.target.value);
   };
-
+  // mover && <MarketMovers />;
   return submitted ? (
     <div className="coin-container">
       <div className="tab-selector">
         <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-          market-movers-tab
           <option>--Choose A Market Mover--</option>
-          <option value={"BTC"}>Bitcoin</option>
+          <option value={true}>MArket mover</option>
+          {/* <option value={"ETH"}>ETHEREUM</option>
+          <option value={"USDT"}>TETHER</option>
+          <option value={"USDC"}>USD COIN</option> */}
         </select>
+        {/* <MarketMovers /> */}
         <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-          market-movers-tab
           <option>--Choose A Top Alt--</option>
-          <option value={"SOL"}>Solana</option>
-          <option value={"LINK"}>ChainLink</option>
+          <option value={"ADA"}>CARDANO</option>
+          <option value={"UNI"}>UNISWAP</option>
+          <option value={"XLM"}>STELLAR</option>
+          <option value={"SOL"}>SOLANA</option>
+          <option value={"GRT"}>THE GRAPH</option>
+          <option value={"DOGE"}>DOGECOIN</option>
+          <option value={"XRP"}>RIPPLE</option>
+          <option value={"DOT"}>POLKADOT</option>
+          <option value={"LINK"}>LINK</option>
+          <option value={"MATIC"}>POLYGON</option>
+          <option value={"XTZ"}>TEZOS</option>
+          <option value={"ATOM"}>COSMOS</option>
+          <option value={"THETA"}>THETA NETWORK</option>
+          <option value={"XMR"}>MONERO</option>
+          <option value={"CHZ"}>CHILIZ</option>
+          <option value={"SHIB"}>SHIBA INU</option>
         </select>
         <button onClick={handleSubmit}>Try?</button>
       </div>
@@ -83,7 +103,8 @@ const CoinContainer = () => {
       </section>
     </div>
   ) : (
-    <Coin ticker={ticker} />
+    // <Coin ticker={ticker} />
+    <MarketMovers />
   );
 };
 

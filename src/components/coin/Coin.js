@@ -19,7 +19,7 @@ const Coin = ({ ticker }) => {
 
   const handleRender = (event) => {
     fetchCoinPreviousDay(event.target.value).then((data) => {
-      setCoinName(assignName(ticker));
+      setCoinName(assignName(event.target.value));
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
