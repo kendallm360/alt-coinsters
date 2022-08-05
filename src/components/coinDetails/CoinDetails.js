@@ -30,10 +30,10 @@ const CoinDetails = ({ coin, annualHigh, annualLow, annualVolume }) => {
         <h3>52W Low?</h3>
         <p className="annual-low-value">{annualLow}</p>
       </div>
-      <div className="annual-volume">
+      {/* <div className="annual-volume">
         <h3>52W Volume?</h3>
         <p className="annual-volume-value">{Math.round(annualVolume)}</p>
-      </div>
+      </div> */}
     </section>
   );
 };
