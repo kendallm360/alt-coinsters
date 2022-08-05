@@ -1,26 +1,45 @@
 import ethereum from "../src/images/ethereum.png";
+import bitcoin from "../src/images/bitcoin.png";
+import chainlink from "../src/images/chainlink.png";
+import chiliz from "../src/images/chiliz.png";
+import cosmos from "../src/images/cosmos.png";
+import dogecoin from "../src/images/dogecoin.png";
+import graph from "../src/images/graph.png";
+import monero from "../src/images/monero.png";
+import polkadot from "../src/images/polkadot.png";
+import polygon from "../src/images/polygon.png";
+import shiba from "../src/images/shiba.png";
+import solana from "../src/images/solana.png";
+import stellar from "../src/images/stellar.png";
+import tether from "../src/images/tether.png";
+import tezos from "../src/images/tezos.png";
+import theta from "../src/images/theta.png";
+import uniswap from "../src/images/uniswap.png";
+import usdCoin from "../src/images/usdCoin.png";
+import xrp from "../src/images/xrp.png";
+import cardano from "../src/images/cardano.png";
 
 const tickers = [
   { crypto: "ETHEREUM", ticker: "ETH", description: "", img: ethereum },
-  { crypto: "BITCOIN", ticker: "BTC", description: "", img: "" },
-  { crypto: "TETHER", ticker: "USDT", description: "", img: "" },
-  { crypto: "US DOLLAR COIN", ticker: "USDC", description: "", img: "" },
-  { crypto: "RIPPLE", ticker: "XRP", description: "", img: "" },
-  { crypto: "CARDANO", ticker: "ADA", description: "", img: "" },
-  { crypto: "UNISWAP", ticker: "UNI", description: "", img: "" },
-  { crypto: "STELLAR", ticker: "XLM", description: "", img: "" },
-  { crypto: "SOLANA", ticker: "SOL", description: "", img: "" },
-  { crypto: "THE GRAPH", ticker: "GRT", description: "", img: "" },
-  { crypto: "DOGECOIN", ticker: "DOGE", description: "", img: "" },
-  { crypto: "POLKADOT", ticker: "DOT", description: "", img: "" },
-  { crypto: "CHAINLINK", ticker: "LINK", description: "", img: "" },
-  { crypto: "POLYGON", ticker: "MATIC", description: "", img: "" },
-  { crypto: "TEZOS", ticker: "XTZ", description: "", img: "" },
-  { crypto: "COSMOS", ticker: "ATOM", description: "", img: "" },
-  { crypto: "THETA NETWORK", ticker: "THETA", description: "", img: "" },
-  { crypto: "MONERO", ticker: "XMR", description: "", img: "" },
-  { crypto: "CHILIZ", ticker: "CHZ", description: "", img: "" },
-  { crypto: "SHIBA INU", ticker: "SHIB", description: "", img: "" },
+  { crypto: "BITCOIN", ticker: "BTC", description: "", img: bitcoin },
+  { crypto: "TETHER", ticker: "USDT", description: "", img: tether },
+  { crypto: "US DOLLAR COIN", ticker: "USDC", description: "", img: usdCoin },
+  { crypto: "RIPPLE", ticker: "XRP", description: "", img: xrp },
+  { crypto: "CARDANO", ticker: "ADA", description: "", img: cardano },
+  { crypto: "UNISWAP", ticker: "UNI", description: "", img: uniswap },
+  { crypto: "STELLAR", ticker: "XLM", description: "", img: stellar },
+  { crypto: "SOLANA", ticker: "SOL", description: "", img: solana },
+  { crypto: "THE GRAPH", ticker: "GRT", description: "", img: graph },
+  { crypto: "DOGECOIN", ticker: "DOGE", description: "", img: dogecoin },
+  { crypto: "POLKADOT", ticker: "DOT", description: "", img: polkadot },
+  { crypto: "CHAINLINK", ticker: "LINK", description: "", img: chainlink },
+  { crypto: "POLYGON", ticker: "MATIC", description: "", img: polygon },
+  { crypto: "TEZOS", ticker: "XTZ", description: "", img: tezos },
+  { crypto: "COSMOS", ticker: "ATOM", description: "", img: cosmos },
+  { crypto: "THETA NETWORK", ticker: "THETA", description: "", img: theta },
+  { crypto: "MONERO", ticker: "XMR", description: "", img: monero },
+  { crypto: "CHILIZ", ticker: "CHZ", description: "", img: chiliz },
+  { crypto: "SHIBA INU", ticker: "SHIB", description: "", img: shiba },
 ];
 
 const assignName = (ticker) => {

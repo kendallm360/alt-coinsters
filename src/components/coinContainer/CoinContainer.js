@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
-import { assignName, btcAnnual, tickers } from "../../helperFunctions";
+import { assignName, btcAnnual, tickers } from "../../utils";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
