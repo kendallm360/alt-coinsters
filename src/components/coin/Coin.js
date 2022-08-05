@@ -20,10 +20,11 @@ const Coin = ({ ticker }) => {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
-
+  console.log(ticker);
   useEffect(() => {
     setCoinName(assignName(ticker));
     fetchCoinPreviousDay(ticker).then((data) => {
+      console.log(data.results, "results?");
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
     });
@@ -44,42 +45,42 @@ const Coin = ({ ticker }) => {
           .sort()
           .pop()
       );
-      setChartData({
-        labels: [
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August,",
-        ],
-        datasets: [
-          {
-            label: "EOD Close",
-            data: data.results.map((day) => day.h),
-            borderColor: "rgb(53, 162, 235)",
-          },
-        ],
-      });
-      setChartOptions({
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-          title: {
-            display: true,
-            text: "Closes",
-          },
-        },
-      });
+      //   setChartData({
+      //     labels: [
+      //       "August",
+      //       "September",
+      //       "October",
+      //       "November",
+      //       "December",
+      //       "January",
+      //       "February",
+      //       "March",
+      //       "April",
+      //       "May",
+      //       "June",
+      //       "July",
+      //       "AugusT",
+      //     ],
+      //     datasets: [
+      //       {
+      //         label: "HIGHEST CLOSE",
+      //         data: data.results.map((day) => day.h),
+      //         borderColor: "rgb(53, 162, 235)",
+      //       },
+      //     ],
+      //   });
+      //   setChartOptions({
+      //     responsive: true,
+      //     plugins: {
+      //       //   legend: {
+      //       //     position: "top",
+      //       //   },
+      //       title: {
+      //         display: true,
+      //         text: "HIGHEST PRICES PER MONTH",
+      //       },
+      //     },
+      //   });
     });
   }, []);
 
@@ -117,11 +118,11 @@ const Coin = ({ ticker }) => {
           "May",
           "June",
           "July",
-          "August,",
+          "August",
         ],
         datasets: [
           {
-            label: "EOD Close",
+            label: "HIGHEST CLOSE",
             data: data.results.map((day) => day.h),
             borderColor: "rgb(53, 162, 235)",
           },
@@ -130,12 +131,12 @@ const Coin = ({ ticker }) => {
       setChartOptions({
         responsive: true,
         plugins: {
-          legend: {
-            position: "top",
-          },
+          //   legend: {
+          //     position: "top",
+          //   },
           title: {
             display: true,
-            text: "Closes",
+            text: "HIGHEST PRICES PER MONTH",
           },
         },
       });

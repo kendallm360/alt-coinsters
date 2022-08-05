@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
-import { assignName } from "../../helperFunctions";
+import { assignName, btcAnnual } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
@@ -42,7 +42,6 @@ const CoinContainer = () => {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
-
   useEffect(() => {
     fetchCoinPreviousDay("ETH").then((data) => {
       setCoinName(assignName("ETH"));
@@ -80,25 +79,31 @@ const CoinContainer = () => {
           "May",
           "June",
           "July",
-          "August,",
+          "August",
         ],
         datasets: [
           {
-            label: "EOD Close",
+            label: "HIGHEST CLOSE",
             data: data.results.map((day) => day.h),
-            borderColor: "rgb(53, 162, 235)",
+            borderColor: "orange",
           },
+          // {
+          //   label: "HIGHEST BTC CLOSE",
+          //   data: btcAnnual.map((day) => day.h),
+          //   borderColor: "blue",
+          // },
         ],
       });
       setChartOptions({
         responsive: true,
         plugins: {
-          legend: {
-            position: "top",
-          },
+          // legend: {
+          //   display: true,
+          //   position: "top",
+          // },
           title: {
             display: true,
-            text: "Closes",
+            text: "HIGHEST PRICES PER MONTH",
           },
         },
       });
@@ -106,13 +111,14 @@ const CoinContainer = () => {
   }, []);
 
   const handleSubmit = () => {
+    console.log(ticker);
     setSubmitted(false);
   };
 
   const handleTickerSelect = (event) => {
     setTicker(event.target.value);
   };
-  // console.log(chartData, "test");
+
   return submitted ? (
     <div className="coin-container">
       <div className="tab-selector">
