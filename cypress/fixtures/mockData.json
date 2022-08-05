@@ -1,0 +1,22 @@
+{
+  "ticker": "X:ETHUSD",
+  "queryCount": 1,
+  "resultsCount": 1,
+  "adjusted": true,
+  "results": [
+    {
+      "T": "X:ETHUSD",
+      "v": 488112.3565296846,
+      "vw": 1618.5634,
+      "o": 1618.82,
+      "c": 1606.2,
+      "h": 1663.65,
+      "l": 1579.2,
+      "t": 1659657599999,
+      "n": 701274
+    }
+  ],
+  "status": "OK",
+  "request_id": "6121091109b7d7f419b4bbb6ff408f6e",
+  "count": 1
+}

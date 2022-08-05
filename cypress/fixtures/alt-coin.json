@@ -1,0 +1,22 @@
+{
+  "ticker": "X:ADAUSD",
+  "queryCount": 1,
+  "resultsCount": 1,
+  "adjusted": true,
+  "results": [
+    {
+      "T": "X:ADAUSD",
+      "v": 58997301.17086794,
+      "vw": 0.50127,
+      "o": 0.501,
+      "c": 0.499,
+      "h": 0.5112,
+      "l": 0.492612,
+      "t": 1659657599999,
+      "n": 72776
+    }
+  ],
+  "status": "OK",
+  "request_id": "650a7cefec6aeae37af76c54bc4d1d91",
+  "count": 1
+}

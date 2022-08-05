@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
-import { assignName } from "../../helperFunctions";
+import { assignName, btcAnnual } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
@@ -42,84 +42,83 @@ const CoinContainer = () => {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
+  useEffect(() => {
+    fetchCoinPreviousDay("ETH").then((data) => {
+      setCoinName(assignName("ETH"));
+      setCoin(data.results[0]);
+      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   fetchCoinPreviousDay("ETH").then((data) => {
-  //     setCoinName(assignName("ETH"));
-  //     setCoin(data.results[0]);
-  //     setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchAnnuals("ETH").then((data) => {
-  //     console.log(
-  //       data.results
-  //         .map((day) => day.h)
-  //         .sort()
-  //         .pop(),
-  //       "num of results"
-  //     );
-  //     setAnnualHigh(
-  //       data.results
-  //         .map((day) => day.h)
-  //         .sort()
-  //         .pop()
-  //     );
-  //     setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-  //     setAnnualVolume(
-  //       data.results
-  //         .map((day) => day.v)
-  //         .sort()
-  //         .pop()
-  //     );
-  //     setChartData({
-  //       labels: [
-  //         "August",
-  //         "September",
-  //         "October",
-  //         "November",
-  //         "December",
-  //         "January",
-  //         "February",
-  //         "March",
-  //         "April",
-  //         "May",
-  //         "June",
-  //         "July",
-  //         "August,",
-  //       ],
-  //       datasets: [
-  //         {
-  //           label: "EOD Close",
-  //           data: data.results.map((day) => day.h),
-  //           borderColor: "rgb(53, 162, 235)",
-  //         },
-  //       ],
-  //     });
-  //     setChartOptions({
-  //       responsive: true,
-  //       plugins: {
-  //         legend: {
-  //           position: "top",
-  //         },
-  //         title: {
-  //           display: true,
-  //           text: "Closes",
-  //         },
-  //       },
-  //     });
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetchAnnuals("ETH").then((data) => {
+      setAnnualHigh(
+        data.results
+          .map((day) => day.h)
+          .sort()
+          .pop()
+      );
+      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+      setAnnualVolume(
+        data.results
+          .map((day) => day.v)
+          .sort()
+          .pop()
+      );
+      setChartData({
+        labels: [
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+        ],
+        datasets: [
+          {
+            label: "HIGHEST CLOSE",
+            data: data.results.map((day) => day.h),
+            borderColor: "orange",
+          },
+          // {
+          //   label: "HIGHEST BTC CLOSE",
+          //   data: btcAnnual.map((day) => day.h),
+          //   borderColor: "blue",
+          // },
+        ],
+      });
+      setChartOptions({
+        responsive: true,
+        plugins: {
+          // legend: {
+          //   display: true,
+          //   position: "top",
+          // },
+          title: {
+            display: true,
+            text: "HIGHEST PRICES PER MONTH",
+          },
+        },
+      });
+    });
+  }, []);
 
   const handleSubmit = () => {
+    console.log(ticker);
     setSubmitted(false);
   };
 
   const handleTickerSelect = (event) => {
     setTicker(event.target.value);
   };
-  // console.log(chartData, "test");
+
   return submitted ? (
     <div className="coin-container">
       <div className="tab-selector">
