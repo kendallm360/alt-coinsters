@@ -19,3 +19,12 @@
   height: 3.5em;
   width: 3.5em;
 }
+
+.hover-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.p {
+  font-size: xx-small;
+}

@@ -94,6 +94,7 @@ const Coin = ({ ticker, tickerSymbol }) => {
     });
     setCoinData(assignData(alt));
     fetchAnnuals(alt).then((data) => {
+      console.log(data.results);
       setAnnualHigh(
         data.results
           .map((day) => day.h)
