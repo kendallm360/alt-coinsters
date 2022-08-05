@@ -171,6 +171,7 @@ const Coin = ({ ticker, tickerSymbol }) => {
         annualHigh={annualHigh}
         annualLow={annualLow}
         annualVolume={annualVolume}
+        coinData={coinData}
       />
 
       <div className="other-coins">
