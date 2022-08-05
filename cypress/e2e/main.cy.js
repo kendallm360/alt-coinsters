@@ -1,14 +1,15 @@
+/* eslint-disable no-undef */
 describe("HomePage Spec", () => {
-  // beforeEach(() => {
-  //   cy.fixture("mockData.json").then((results) => {
-  //     cy.intercept(
-  //       "GET",
-  //       `https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4`,
-  //       results
-  //     );
-  //     cy.visit("http://localhost:3000/");
-  //   });
-  // });
+  beforeEach(() => {
+    cy.fixture("mockData.json").then((results) => {
+      cy.intercept(
+        "GET",
+        `https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4`,
+        results
+      );
+      cy.visit("http://localhost:3000/");
+    });
+  });
 
   it("Should a have title for the app", () => {
     cy.get(".nav-bar").get("h1").contains("Alt-Coinsters");

@@ -1,14 +1,14 @@
 describe("Alt-Coin spec", () => {
-  // beforeEach(() => {
-  //   cy.fixture("alt-coin.json").then((results) => {
-  //     cy.intercept(
-  //       "GET",
-  //       `https://api.polygon.io/v2/aggs/ticker/X:ADAUSD/prev?adjusted=true&apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4`,
-  //       results
-  //     );
-  //     cy.visit("http://localhost:3000");
-  //   });
-  // });
+  beforeEach(() => {
+    cy.fixture("alt-coin.json").then((results) => {
+      cy.intercept(
+        "GET",
+        `https://api.polygon.io/v2/aggs/ticker/X:ADAUSD/prev?adjusted=true&apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4`,
+        results
+      );
+      cy.visit("http://localhost:3000");
+    });
+  });
 
   it("should be able to choose Cardano and go to its landing page", () => {
     cy.get("select").select("CARDANO");

@@ -21,68 +21,69 @@ const Coin = ({ ticker }) => {
   });
   const [chartOptions, setChartOptions] = useState({});
   console.log(ticker);
-  useEffect(() => {
-    setCoinName(assignName(ticker));
-    fetchCoinPreviousDay(ticker).then((data) => {
-      console.log(data.results, "results?");
-      setCoin(data.results[0]);
-      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
-    });
-  }, []);
 
-  useEffect(() => {
-    fetchAnnuals(ticker).then((data) => {
-      setAnnualHigh(
-        data.results
-          .map((day) => day.h)
-          .sort()
-          .pop()
-      );
-      setAnnualLow(data.results.map((day) => day.l).sort()[0]);
-      setAnnualVolume(
-        data.results
-          .map((day) => day.v)
-          .sort()
-          .pop()
-      );
-      //   setChartData({
-      //     labels: [
-      //       "August",
-      //       "September",
-      //       "October",
-      //       "November",
-      //       "December",
-      //       "January",
-      //       "February",
-      //       "March",
-      //       "April",
-      //       "May",
-      //       "June",
-      //       "July",
-      //       "AugusT",
-      //     ],
-      //     datasets: [
-      //       {
-      //         label: "HIGHEST CLOSE",
-      //         data: data.results.map((day) => day.h),
-      //         borderColor: "rgb(53, 162, 235)",
-      //       },
-      //     ],
-      //   });
-      //   setChartOptions({
-      //     responsive: true,
-      //     plugins: {
-      //       //   legend: {
-      //       //     position: "top",
-      //       //   },
-      //       title: {
-      //         display: true,
-      //         text: "HIGHEST PRICES PER MONTH",
-      //       },
-      //     },
-      //   });
-    });
-  }, []);
+  //   useEffect(() => {
+  //     setCoinName(assignName(ticker));
+  //     fetchCoinPreviousDay(ticker).then((data) => {
+  //       console.log(data.results, "results?");
+  //       setCoin(data.results[0]);
+  //       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+  //     });
+  //   }, []);
+
+  //   useEffect(() => {
+  //     fetchAnnuals(ticker).then((data) => {
+  //       setAnnualHigh(
+  //         data.results
+  //           .map((day) => day.h)
+  //           .sort()
+  //           .pop()
+  //       );
+  //       setAnnualLow(data.results.map((day) => day.l).sort()[0]);
+  //       setAnnualVolume(
+  //         data.results
+  //           .map((day) => day.v)
+  //           .sort()
+  //           .pop()
+  //       );
+  //       setChartData({
+  //         labels: [
+  //           "August",
+  //           "September",
+  //           "October",
+  //           "November",
+  //           "December",
+  //           "January",
+  //           "February",
+  //           "March",
+  //           "April",
+  //           "May",
+  //           "June",
+  //           "July",
+  //           "August",
+  //         ],
+  //         datasets: [
+  //           {
+  //             label: "HIGHEST CLOSE",
+  //             data: data.results.map((day) => day.h),
+  //             borderColor: "rgb(53, 162, 235)",
+  //           },
+  //         ],
+  //       });
+  //       setChartOptions({
+  //         responsive: true,
+  //         plugins: {
+  //           //   legend: {
+  //           //     position: "top",
+  //           //   },
+  //           title: {
+  //             display: true,
+  //             text: "HIGHEST PRICES PER MONTH",
+  //           },
+  //         },
+  //       });
+  //     });
+  //   }, []);
 
   const handleRender = () => {
     setCoinName(assignName(alt));
