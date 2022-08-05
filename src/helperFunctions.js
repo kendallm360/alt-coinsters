@@ -1,3 +1,26 @@
+const tickers = [
+  { crypto: "ETHEREUM", ticker: "ETH" },
+  { crypto: "BITCOIN", ticker: "BTC" },
+  { crypto: "TETHER", ticker: "USDT" },
+  { crypto: "US DOLLAR COIN", ticker: "USDC" },
+  { crypto: "RIPPLE", ticker: "XRP" },
+  { crypto: "CARDANO", ticker: "ADA" },
+  { crypto: "UNISWAP", ticker: "UNI" },
+  { crypto: "STELLAR", ticker: "XLM" },
+  { crypto: "SOLANA", ticker: "SOL" },
+  { crypto: "THE GRAPH", ticker: "GRT" },
+  { crypto: "DOGECOIN", ticker: "DOGE" },
+  { crypto: "POLKADOT", ticker: "DOT" },
+  { crypto: "CHAINLINK", ticker: "LINK" },
+  { crypto: "POLYGON", ticker: "MATIC" },
+  { crypto: "TEZOS", ticker: "XTZ" },
+  { crypto: "COSMOS", ticker: "ATOM" },
+  { crypto: "THETA NETWORK", ticker: "THETA" },
+  { crypto: "MONERO", ticker: "XMR" },
+  { crypto: "CHILIZ", ticker: "CHZ" },
+  { crypto: "SHIBA INU", ticker: "SHIB" },
+];
+
 const assignName = (ticker) => {
   if (ticker === "ETH") {
     return "Ethereum";
@@ -194,4 +217,4 @@ const btcAnnual = [
   },
 ];
 
-export { assignName, btcAnnual };
+export { assignName, btcAnnual, tickers };

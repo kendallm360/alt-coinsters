@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
-import { assignName, btcAnnual } from "../../helperFunctions";
+import { assignName, btcAnnual, tickers } from "../../helperFunctions";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
@@ -121,32 +121,15 @@ const CoinContainer = () => {
 
   return submitted ? (
     <div className="coin-container">
-      <div className="tab-selector">
+      <div className="coin-selector">
         <select value={ticker} name={ticker} onChange={handleTickerSelect}>
           <option>--Choose A Top Alt--</option>
-          <option value={"BTC"}>BITCOIN</option>
-          <option value={"USDT"}>TETHER</option>
-          <option value={"USDC"}>USD COIN</option>
-          <option value={"ADA"}>CARDANO</option>
-          <option value={"UNI"}>UNISWAP</option>
-          <option value={"XLM"}>STELLAR</option>
-          <option value={"SOL"}>SOLANA</option>
-          <option value={"GRT"}>THE GRAPH</option>
-          <option value={"DOGE"}>DOGECOIN</option>
-          <option value={"XRP"}>RIPPLE</option>
-          <option value={"DOT"}>POLKADOT</option>
-          <option value={"LINK"}>CHAINLINK</option>
-          <option value={"MATIC"}>POLYGON</option>
-          <option value={"XTZ"}>TEZOS</option>
-          <option value={"ATOM"}>COSMOS</option>
-          <option value={"THETA"}>THETA NETWORK</option>
-          <option value={"XMR"}>MONERO</option>
-          <option value={"CHZ"}>CHILIZ</option>
-          <option value={"SHIB"}>SHIBA INU</option>
-          <option value={"ETH"}>ETHEREUM</option>
+          {tickers.map((stock) => {
+            return <option value={stock.ticker}>{stock.crypto}</option>;
+          })}
         </select>
         <Link to={`/coin/${ticker}`}>
-          <button onClick={handleSubmit}>Try?</button>
+          <button onClick={handleSubmit}>Search</button>
         </Link>
       </div>
       <header className="coin-header">
