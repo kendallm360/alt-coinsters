@@ -42,6 +42,10 @@ const tickers = [
   { crypto: "SHIBA INU", ticker: "SHIB", description: "", img: shiba },
 ];
 
+const assignData = (data) => {
+  let match = tickers.find((coin) => coin.ticker === data);
+  return match;
+};
 const assignName = (ticker) => {
   if (ticker === "ETH") {
     return "Ethereum";
@@ -238,4 +242,4 @@ const btcAnnual = [
   },
 ];
 
-export { assignName, btcAnnual, tickers };
+export { assignName, btcAnnual, tickers, assignData };

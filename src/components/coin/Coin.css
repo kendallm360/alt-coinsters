@@ -21,3 +21,8 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.coin-logo {
+  height: 3.5em;
+  width: 3.5em;
+}

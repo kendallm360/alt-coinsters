@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
-import { assignName, btcAnnual, tickers } from "../../utils";
+import { assignName, btcAnnual, tickers, assignData } from "../../utils";
 import "./CoinContainer.css";
 import Coin from "../coin/Coin";
 import CoinDetails from "../coinDetails/CoinDetails";
@@ -37,6 +37,7 @@ const CoinContainer = () => {
   const [annualVolume, setAnnualVolume] = useState(0);
   const [coin, setCoin] = useState([]);
   const [symbol, setSymbol] = useState("");
+  const [coinData, setCoinData] = useState("");
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
@@ -47,6 +48,7 @@ const CoinContainer = () => {
       setCoinName(assignName("ETH"));
       setCoin(data.results[0]);
       setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+      setCoinData(assignData("ETH"));
     });
   }, []);
 
@@ -132,7 +134,7 @@ const CoinContainer = () => {
         </Link>
       </div>
       <header className="coin-header">
-        <img className="coin-logo" src={tickers[0].img} />
+        <img className="coin-logo" src={coinData.img} />
         <h2>Coin Name: {coinName}</h2>
         <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
