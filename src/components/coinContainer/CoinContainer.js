@@ -111,7 +111,6 @@ const CoinContainer = () => {
   }, []);
 
   const handleSubmit = () => {
-    console.log(ticker);
     setSubmitted(false);
   };
 
@@ -133,13 +132,12 @@ const CoinContainer = () => {
         </Link>
       </div>
       <header className="coin-header">
-        {/* <img src="" /> */}
+        <img className="coin-logo" src={tickers[0].img} />
         <h2>Coin Name: {coinName}</h2>
         <h3>Symbol: {symbol}</h3>
         <button className="favorite">Favorite</button>
       </header>
       <div className="chart">
-        {/* <p>maybe?</p> */}
         <CoinChart chartData={chartData} chartOptions={chartOptions} />
       </div>
       <CoinDetails
