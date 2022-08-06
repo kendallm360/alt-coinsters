@@ -45,7 +45,9 @@ const Definitions = () => {
             })}
           </select>
           <Link to={`/coin/${ticker}`}>
-            <button onClick={handleSubmit}>Try?</button>
+            <button className="search-coin" onClick={handleSubmit}>
+              Try?
+            </button>
           </Link>
         </div>
       </p>
@@ -80,7 +82,9 @@ const Definitions = () => {
         As the name implies, payment tokens are designed to be used as
         currency—to exchange value between parties.{" "}
         <Link to="/coin/BTC">
-          <button onClick={handleSubmit}>BTC</button>
+          <button className="coin-button" onClick={handleSubmit}>
+            BTC
+          </button>
         </Link>
         is the prime example of a payment token.
       </p>
@@ -97,11 +101,15 @@ const Definitions = () => {
         2021, payment processing giant Visa Inc. (V) announced that it would
         begin settling some transactions on its network in
         <Link to="/coin/USDC">
-          <button onClick={handleSubmit}>USDC</button>
+          <button className="coin-button" onClick={handleSubmit}>
+            USDC
+          </button>
         </Link>
         over the Ethereum blockchain.
         <Link to="/coin/USDT">
-          <button onClick={handleSubmit}>TETHER</button>
+          <button className="coin-button" onClick={handleSubmit}>
+            TETHER
+          </button>
         </Link>{" "}
         is a another notable StableCoin by definition.
       </p>
@@ -111,7 +119,9 @@ const Definitions = () => {
         example, they might be used to purchase services, pay network fees, or
         redeem rewards.
         <Link to="/coin/LINK">
-          <button onClick={handleSubmit}>LINK</button>
+          <button className="coin-button" onClick={handleSubmit}>
+            LINK
+          </button>
         </Link>{" "}
         , my favorite pure utility coin, uses "LINKS" to compensate Chainlink
         Node operators for the retrieval of data from the external data sources,
@@ -137,11 +147,15 @@ const Definitions = () => {
           the space so it is good to be aware of them since they can cause an
           increase of buying/selling pressures. Good examples are
           <Link to="/coin/DOGE">
-            <button onClick={handleSubmit}>DOGE</button>
+            <button className="coin-button" onClick={handleSubmit}>
+              DOGE
+            </button>
           </Link>
           and{" "}
           <Link to="/coin/SHIB">
-            <button onClick={handleSubmit}>SHIBA</button>
+            <button className="coin-button" onClick={handleSubmit}>
+              SHIBA
+            </button>
           </Link>{" "}
         </span>
       </p>
