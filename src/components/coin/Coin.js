@@ -96,6 +96,9 @@ const Coin = ({ tickerSymbol }) => {
         assignData(data.results[0].T.split("USD").join("").split("X:")[1])
       );
     });
+  }, []);
+
+  useEffect(() => {
     fetchAnnuals("ETH").then((data) => {
       console.log("fetching over render2");
       setAnnualHigh(
@@ -154,7 +157,7 @@ const Coin = ({ tickerSymbol }) => {
         },
       });
     });
-  }, []);
+  });
 
   const handleRender = () => {
     setCoinName(assignName(alt));
