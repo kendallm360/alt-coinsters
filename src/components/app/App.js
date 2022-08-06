@@ -4,6 +4,7 @@ import CoinContainer from "../coinContainer/CoinContainer";
 import { Route } from "react-router-dom";
 import Coin from "../coin/Coin";
 import CoinChart from "../chart/CoinChart";
+import Definitions from "../definitions/Definitions";
 
 const App = () => {
   return (
@@ -21,7 +22,8 @@ const App = () => {
       <Route exact path="/">
         <>
           {/* <CoinChart /> */}
-          <CoinContainer />
+          {/* <CoinContainer /> */}
+          <Definitions />
         </>
       </Route>
     </div>

@@ -1,5 +1,7 @@
 .chart-display {
-  margin-left: 20rem;
-  height: 30%;
-  width: 70%;
+  /* align-self: center; */
+  margin-left: 12rem;
+  height: 20%;
+  width: 80%;
+  background-color: whitesmoke;
 }

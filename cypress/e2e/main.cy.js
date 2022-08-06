@@ -1,14 +1,13 @@
 /* eslint-disable no-undef */
 describe("HomePage Spec", () => {
   beforeEach(() => {
-    cy.fixture("mockData.json").then((results) => {
-      cy.intercept(
-        "GET",
-        `https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4`,
-        results
-      );
-      cy.visit("http://localhost:3000/");
-    });
+    cy.intercept(
+      "GET",
+      `https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=mlvQmPrXbKKHEum7bADMetPy2uIJj4K4`,
+      { fixture: "mockData.json" }
+    );
+
+    cy.visit("http://localhost:3000/");
   });
 
   it("Should a have title for the app", () => {
@@ -21,8 +20,6 @@ describe("HomePage Spec", () => {
 
   it.only("Should have Ethereum's information showing on page load", () => {
     cy.get(".chart").should("be.visible");
-    cy.get("h2").contains("Ethereum");
-    cy.get("h3").contains("ETH");
     cy.get(".previous-volume").should("exist");
     cy.get(".previous-high").should("exist");
     cy.get(".previous-low").should("exist");
@@ -30,5 +27,8 @@ describe("HomePage Spec", () => {
     cy.get(".coin-details").get(".annual-high-value").should("exist");
     cy.get(".annual-low-value").should("exist");
     cy.get(".annual-volume-value").should("exist");
+    cy.get(".coin-information").should("exist");
+    cy.get(".coin-name").contains("Ethereum");
+    cy.get("h3").contains("ETH");
   });
 });
