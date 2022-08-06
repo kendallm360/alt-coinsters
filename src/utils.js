@@ -19,6 +19,7 @@ import usdCoin from "../src/images/usdCoin.png";
 import xrp from "../src/images/xrp.png";
 import cardano from "../src/images/cardano.png";
 
+const favorites = [];
 const tickers = [
   {
     crypto: "ETHEREUM",
@@ -362,4 +363,4 @@ const btcAnnual = [
   },
 ];
 
-export { assignName, btcAnnual, tickers, assignData };
+export { assignName, btcAnnual, tickers, assignData, favorites };

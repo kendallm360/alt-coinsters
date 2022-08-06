@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import PropTypes from "prop-types";
-import { assignName, tickers, assignData } from "../../utils";
+import { assignName, tickers, assignData, favorites } from "../../utils";
 import CoinDetails from "../coinDetails/CoinDetails";
 import CoinChart from "../chart/CoinChart";
 import "./Coin.css";
@@ -159,7 +159,14 @@ const Coin = ({ tickerSymbol }) => {
     setAlt(event.target.value);
   };
 
-  const testLogs = () => {};
+  const addToFavorites = () => {
+    favorites.push({
+      yearHigh: annualHigh,
+      yearLow: annualLow,
+      lastClose: coin.c,
+      coinInfo: coinData,
+    });
+  };
 
   return (
     <div className="coin-wrapper">
@@ -181,8 +188,8 @@ const Coin = ({ tickerSymbol }) => {
           {/* <span>({symbol.length > 1 ? symbol : `USD${symbol}`})</span> */}
           <span>{coinData.ticker}</span>
         </div>
-        <button className="favorite" onClick={testLogs}>
-          Favorite
+        <button className="watchlist" onClick={addToFavorites}>
+          Add to Watchlist
         </button>
       </header>
       <div className="chart">
