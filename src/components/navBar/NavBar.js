@@ -8,7 +8,7 @@ const NavBar = () => {
         <h1 className="nav-bar">Alt-Coinsters</h1>
       </Link>
       <Link to="/watchlist">
-        <button className="nav-bar">Watchlist</button>
+        <button className="watchlist">Watchlist</button>
       </Link>
     </div>
   );
