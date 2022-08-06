@@ -88,16 +88,16 @@ const Coin = ({ tickerSymbol }) => {
   console.log("spread old^ from new(below)");
   useEffect(() => {
     fetchCoinPreviousDay("ETH").then((data) => {
-      console.log(data.results[0].T.split("USD").join("").split("X:")[1]);
-      setCoinName("ETH");
+      console.log("fetching over render 1");
+      setCoinName(data.results[0].T.split("USD").join("").split("X:")[1]);
       setCoin(data.results[0]);
-      setSymbol("ETH");
-      setCoinData(assignData("ETH"));
+      setSymbol(data.results[0].T.split("USD").join("").split("X:")[1]);
+      setCoinData(
+        assignData(data.results[0].T.split("USD").join("").split("X:")[1])
+      );
     });
-  }, []);
-
-  useEffect(() => {
     fetchAnnuals("ETH").then((data) => {
+      console.log("fetching over render2");
       setAnnualHigh(
         data.results
           .map((day) => day.h)
@@ -236,9 +236,12 @@ const Coin = ({ tickerSymbol }) => {
         </Link>
       </div>
       <header className="coin-header">
-        <img className="coin-logo" src={coinData.img} />
-        <h2>Coin Name: {coinName}</h2>
-        <h3>Symbol: {symbol.length > 1 ? symbol : `USD${symbol}`}</h3>
+        <div className="coin-information">
+          <img className="coin-logo" src={coinData.img} />
+          <h2 className="coin-name">{coinData.crypto}</h2>
+          {/* <span>({symbol.length > 1 ? symbol : `USD${symbol}`})</span> */}
+          <span>{coinData.ticker}</span>
+        </div>
         <button className="favorite" onClick={testLogs}>
           Favorite
         </button>
