@@ -20,22 +20,32 @@ const Definitions = () => {
 
   return (
     <>
-      <div className="tab-selector">
+      {/* <div className="tab-selector">
         <select value={ticker} name={ticker} onChange={handleTickerSelect}>
           <option>--Choose A Top Alt--</option>
           {tickers.map((stock) => {
             return <option value={stock.ticker}>{stock.crypto}</option>;
           })}
-        </select>
-        <Link to={`/coin/${ticker}`}>
+        </select> */}
+      {/* <Link to={`/coin/${ticker}`}>
           <button onClick={handleSubmit}>Try?</button>
-        </Link>
-      </div>
+        </Link> */}
       <p>
         Welcome to ALT-Coinsters, a safe place for learning about the ins and
-        outs of alt-coins..specifically the good ones. If you are alreayd
+        outs of altcoins..specifically the good ones. If you are already
         familiar with the crypto space feel free to look at some of my personal
-        favorites above
+        favorites
+        <div className="tab-selector">
+          <select value={ticker} name={ticker} onChange={handleTickerSelect}>
+            <option>---Top Altcoins---</option>
+            {tickers.map((stock) => {
+              return <option value={stock.ticker}>{stock.crypto}</option>;
+            })}
+          </select>
+          <Link to={`/coin/${ticker}`}>
+            <button onClick={handleSubmit}>Try?</button>
+          </Link>
+        </div>
       </p>
       <p>
         If not no worries, we got you covered by bringing you right where you
@@ -68,7 +78,7 @@ const Definitions = () => {
         As the name implies, payment tokens are designed to be used as
         currency—to exchange value between parties.{" "}
         <Link to="/coin/BTC">
-          <button onClick={handleSubmit}>Bitcoin</button>
+          <button onClick={handleSubmit}>BTC</button>
         </Link>
         is the prime example of a payment token.
       </p>
@@ -81,14 +91,15 @@ const Definitions = () => {
         metals, or other cryptocurrencies. The basket is meant to act as a
         reserve to redeem holders if the cryptocurrency fails or faces problems.
         Price fluctuations for stablecoins are not meant to exceed a narrow
-        range. In March 2021, payment processing giant Visa Inc. (V) announced
-        that it would begin settling some transactions on its network in
+        range which leads to them not straying too far away from $1. In March
+        2021, payment processing giant Visa Inc. (V) announced that it would
+        begin settling some transactions on its network in
         <Link to="/coin/USDC">
           <button onClick={handleSubmit}>USDC</button>
         </Link>
-        over the Ethereum blockchain.{" "}
+        over the Ethereum blockchain.
         <Link to="/coin/USDT">
-          <button onClick={handleSubmit}>Tether</button>
+          <button onClick={handleSubmit}>TETHER</button>
         </Link>{" "}
         is a another notable StableCoin by definition.
       </p>
@@ -96,15 +107,41 @@ const Definitions = () => {
       <p>
         Utility tokens are used to provide services within a network. For
         example, they might be used to purchase services, pay network fees, or
-        redeem rewards. Filecoin, which is used to buy storage space on a
-        network and secure the information, is an example of a utility token. 4
-        Ether (ETH) is also a utility token. It is designed to be used in the
-        Ethereum blockchain and virtual machine to pay for transactions. The
-        stable coin USTerra uses utility tokens to attempt to maintain its peg
-        to the dollar—which it lost on May 11, 2022—by minting and burning two
-        utility tokens to create downward or upward pressure on its price. 5
-        Utility tokens can be purchased on exchanges and held, but they are
-        meant to be used in the blockchain network to keep it functioning.
+        redeem rewards.
+        <Link to="/coin/LINK">
+          <button onClick={handleSubmit}>LINK</button>
+        </Link>{" "}
+        , my favorite pure utility coin, uses "LINKS" to compensate Chainlink
+        Node operators for the retrieval of data from the external data sources,
+        turning it to blockchain readable format, off-chain computation, and
+        uptime guarantees. aka Paid for helping mine the coin Ether (ETH) is
+        also a utility token. It is designed to be used in the Ethereum
+        blockchain and virtual machine to pay for transactions. Utility tokens
+        can be purchased on exchanges and held, but they are meant to be used in
+        the blockchain network to keep it functioning.
+      </p>
+      <li>The infamous Meme Coins</li>
+      <p>
+        As their name suggests, meme coins are inspired by a joke or a silly
+        take on other well-known cryptocurrencies. They typically gain
+        popularity in a short period of time, often hyped online by prominent
+        influencers or investors attempting to exploit short-term gains. Many
+        refer to the sharp run-up in this type of altcoins during April and May
+        2021 as "meme coin season,".
+        <span>
+          As a longer term investor these are not my favorite coins but it does
+          give good exposure and experience to the trends of more volatile coins
+          that are good for day trading. They also bring a lot of attention to
+          the space so it is good to be aware of them since they can cause an
+          increase of buying/selling pressures. Good examples are
+          <Link to="/coin/DOGE">
+            <button onClick={handleSubmit}>DOGE</button>
+          </Link>
+          and{" "}
+          <Link to="/coin/SHIB">
+            <button onClick={handleSubmit}>SHIBA</button>
+          </Link>{" "}
+        </span>
       </p>
       <li>Security Tokens</li>
       <p>
@@ -115,9 +152,24 @@ const Definitions = () => {
         held. Otherwise, the tokens are worthless because they wouldn't
         represent anything. Security tokens are regulated by the Securities and
         Exchange Commission because they are designed to act as securities.
-        Security tokens are not yet available for retail investors on public
-        stock or cryptocurrency exchanges but it is important to be aware of
-        them because adaptation could change the space drastically
+        <span>
+          Security tokens are not yet available for retail investors on public
+          stock or cryptocurrency exchanges but it is important to be aware of
+          them because adaptation could change the space completely
+        </span>
+      </p>
+      <h2>Definitions and Terms</h2>
+      {/* <p>As with any niche space crypto nerds have their own jargon.</p> */}
+      <h3>Market Movers</h3>
+      <span>
+        BTC and ETH are the most prominent market movers but there are others to
+        be aware of. No matter your opinion of them as a coin itself you have to
+        watch the events surrounding them because they will move the entire
+        market for the better or the worse.
+      </span>
+      <p className="reference">
+        Alot of this information can be found on investopedia.com, coinbase.com,
+        and polygon.api
       </p>
     </>
   );
