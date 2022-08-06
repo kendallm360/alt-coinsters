@@ -34,6 +34,10 @@ const Coin = ({ tickerSymbol }) => {
 
   useEffect(() => {
     fetchAnnuals(tickerSymbol).then((data) => {
+      console.log(
+        data.results.map((day) => new Date(day.t).toLocaleDateString())
+      );
+
       setAnnualHigh(
         data.results
           .map((day) => day.h)
@@ -63,6 +67,10 @@ const Coin = ({ tickerSymbol }) => {
           "July",
           "August",
         ],
+        // labels: [
+        //   data.results.map((day) => new Date(day.t).toLocaleDateString()),
+        // ],
+
         datasets: [
           {
             label: "HIGHEST CLOSE",
@@ -108,6 +116,7 @@ const Coin = ({ tickerSymbol }) => {
           .pop()
       );
       setChartData({
+        // labels: [data.results.map((day) => new Date(day.t))],
         labels: [
           "August",
           "September",

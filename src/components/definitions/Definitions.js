@@ -18,6 +18,8 @@ const Definitions = () => {
     setTicker(event.target.value);
   };
 
+  let dateTest = new Date(1659398400000);
+  console.log(dateTest);
   return (
     <>
       {/* <div className="tab-selector">
@@ -158,6 +160,10 @@ const Definitions = () => {
           them because adaptation could change the space completely
         </span>
       </p>
+      <h2>Levels of alt coins</h2>
+      <p>gen1</p>
+      <p>gen2</p>
+      <p>gen3</p>
       <h2>Definitions and Terms</h2>
       {/* <p>As with any niche space crypto nerds have their own jargon.</p> */}
       <h3>Market Movers</h3>
