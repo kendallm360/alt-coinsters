@@ -20,6 +20,7 @@ import xrp from "../src/images/xrp.png";
 import cardano from "../src/images/cardano.png";
 
 const favorites = [];
+
 const tickers = [
   {
     crypto: "ETHEREUM",
