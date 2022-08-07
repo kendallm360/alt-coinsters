@@ -53,8 +53,8 @@ const CoinDetails = ({
 export default CoinDetails;
 
 CoinDetails.propTypes = {
-  coin: PropTypes.any,
-  coinData: PropTypes.any,
+  coin: PropTypes.object,
+  coinData: PropTypes.object,
   annualHigh: PropTypes.number,
   annualLow: PropTypes.number,
   annualVolume: PropTypes.number,

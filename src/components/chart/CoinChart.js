@@ -1,7 +1,7 @@
 import "./CoinChart.css";
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+// import { Chart as ChartJS } from "chart.js/auto";
 import PropTypes from "prop-types";
 const CoinChart = ({ chartData, chartOptions }) => {
   return (
@@ -12,7 +12,7 @@ const CoinChart = ({ chartData, chartOptions }) => {
 };
 export default CoinChart;
 
-// CoinChart.PropTypes = {
-//   chartData: PropTypes.Requireable<any>,
-//   chartOptions: PropTypes.Requireable<any>,
-// };
+CoinChart.propTypes = {
+  chartData: PropTypes.object.isRequired,
+  chartOptions: PropTypes.object.isRequired,
+};
