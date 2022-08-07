@@ -23,20 +23,26 @@ const Definitions = () => {
         outs of altcoins..specifically the good ones. If you are already
         familiar with the crypto space feel free to checkout some of my personal
         favorites
-        <div className="tab-selector">
-          <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-            <option>---Top Altcoins---</option>
-            {tickers.map((stock) => {
-              return <option value={stock.ticker}>{stock.crypto}</option>;
-            })}
-          </select>
-          <Link to={`/coin/${ticker}`}>
+      </p>
+      <div className="tab-selector">
+        <select value={ticker} name={ticker} onChange={handleTickerSelect}>
+          <option>---Top Altcoins---</option>
+          {tickers.map((stock) => {
+            return (
+              <option key={Date.now() + stock.ticker} value={stock.ticker}>
+                {stock.crypto}
+              </option>
+            );
+          })}
+        </select>
+        <Link to={`/coin/${ticker}`}>
+          {ticker && (
             <button className="search-coin" onClick={handleSubmit}>
               Search
             </button>
-          </Link>
-        </div>
-      </p>
+          )}
+        </Link>
+      </div>
       <h2>What's an Alt-coin?</h2>
       <p>
         Altcoins are generally defined as all cryptocurrencies other than

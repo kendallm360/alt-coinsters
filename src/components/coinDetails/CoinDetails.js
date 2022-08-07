@@ -44,7 +44,9 @@ const CoinDetails = ({
         </div>
       </section>
       <section className="about">
-        <h2>About {coinData.crypto}</h2>
+        <div>
+          <h2>About {coinData.crypto}</h2>
+        </div>
         <h3>{coinData.description}</h3>
       </section>
     </>
@@ -54,8 +56,12 @@ const CoinDetails = ({
 export default CoinDetails;
 
 CoinDetails.propTypes = {
-  coin: PropTypes.object,
-  coinData: PropTypes.object,
+  coin: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.any,
+  ]),
+  coinData: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   annualHigh: PropTypes.number,
   annualLow: PropTypes.number,
   annualVolume: PropTypes.number,

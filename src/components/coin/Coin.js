@@ -65,9 +65,9 @@ const Coin = ({ tickerSymbol }) => {
         ],
         datasets: [
           {
-            label: "HIGHEST CLOSE",
+            label: "MONTHLY CLOSE",
             data: data.results.map((day) => day.h),
-            borderColor: "rgb(53, 162, 235)",
+            borderColor: "rgb(50, 205, 50)",
           },
         ],
       });
@@ -121,9 +121,9 @@ const Coin = ({ tickerSymbol }) => {
         ],
         datasets: [
           {
-            label: "HIGHEST CLOSE",
+            label: "MONTHLY CLOSE",
             data: data.results.map((day) => day.h),
-            borderColor: "rgb(53, 162, 235)",
+            borderColor: "rgb(50, 205, 50)",
           },
         ],
       });
@@ -160,20 +160,25 @@ const Coin = ({ tickerSymbol }) => {
     });
     setFavorited(true);
   };
-
   return (
     <div className="coin-wrapper">
       <div className="other-coins">
         <select value={alt} onChange={handleAlt}>
-          <option>--Choose A Top Alt--</option>
+          <option>---Top Altcoins---</option>
           {tickers.map((stock) => {
-            return <option value={stock.ticker}>{stock.crypto}</option>;
+            return (
+              <option key={Date.now() + stock.ticker} value={stock.ticker}>
+                {stock.crypto}
+              </option>
+            );
           })}
         </select>
         <Link to={`/coin/${alt}`}>
-          <button className="search" onClick={handleRender}>
-            Search
-          </button>
+          {alt && (
+            <button className="search" onClick={handleRender}>
+              Search
+            </button>
+          )}
         </Link>
       </div>
       <header className="coin-header">
@@ -196,6 +201,8 @@ const Coin = ({ tickerSymbol }) => {
         annualLow={annualLow}
         annualVolume={annualVolume}
         coinData={coinData}
+        addToFavorites={addToFavorites}
+        setFavorited={setFavorited}
       />
     </div>
   );
