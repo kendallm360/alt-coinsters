@@ -1,0 +1,9 @@
+.search-coin,
+.coin-button {
+  background-color: limegreen;
+  border-radius: 2em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: black;
+  cursor: pointer;
+  height: 2em;
+}

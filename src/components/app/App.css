@@ -1,7 +1,11 @@
+@import url("https://use.typekit.net/tqn4pog.css");
+
 .App {
   background-image: url("../../images/bg3.png");
   background-repeat: no-repeat, repeat;
   background-size: 100% 100%;
   background-position: center;
+  color: white;
+  font-family: space-mono, mono;
   text-align: center;
 }

@@ -34,10 +34,6 @@ const Coin = ({ tickerSymbol }) => {
 
   useEffect(() => {
     fetchAnnuals(tickerSymbol).then((data) => {
-      console.log(
-        data.results.map((day) => new Date(day.t).toLocaleDateString())
-      );
-
       setAnnualHigh(
         data.results
           .map((day) => day.h)

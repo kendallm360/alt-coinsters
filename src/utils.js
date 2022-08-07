@@ -23,13 +23,13 @@ const favorites = [];
 
 const assignDecimalPlaces = (value) => {
   if (value > 1) {
-    return value.toPrecision(2);
+    return value.toFixed(2);
   }
   if (value < 0.1) {
-    return value.toPrecision(3);
+    return value.toFixed(3);
   }
   if (value < 1 && value > 0.1) {
-    return value.toPrecision(2);
+    return value.toFixed(2);
   }
 };
 
