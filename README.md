@@ -1,68 +1,48 @@
-# Getting Started with Create React App
+# Alt-Coinsters
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For my showcase project I decided to make an app for people who are interested in/ would like to learn about alt-coins. Site users can gain initial exposure to the space by learning a few of the basics, see market data for some of my favorite alt-coins, and add coins to a watchlist. Guidelines for this project can be found [here](https://frontend.turing.edu/projects/module-3/showcase.html).
 
-## Available Scripts
+## Goals
 
-### `npm start`
+Use the technology you’ve been working with over the course of the module to demonstrate mastery of the following:
+- React
+- Router
+- Asynchronous JavaScript
+- End to end testing with Cypress
+- Create personas and user stories to describe your target audience.
+- Display the data from the API in a way that applies directly to your audience
+- Ability for users to store/manipulate the data displayed in the application, such as favoriting or adding to a list, searching, commenting, etc
+- Multiple views handled by Router
+- Be deployed using Heroku, Surge, or any other similar service
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- React Router
+- Chart.js
+- Javascript
+- CSS
+- Cypress.io
+- Postman
 
-### `npm test`
+## Challenges
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Working around API fetch limits
+- Getting sick during the last couple of days
+- Charting financial data and other data that has many points and need to plotted linearally
 
-### `npm run build`
+## Wins
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Writing my first app using hooks from the start
+- Successfully implementing the utils file and Chart.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Example of Site:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Future Additions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Add local storage to save coins on the watchlist
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributor
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Kendall McGree](https://github.com/kendallm360)
