@@ -16,7 +16,7 @@ const fetchAnnuals = (symbol) => {
     if (response.ok) {
       return response.json();
     }
-    throw Error(response.statusText);
+    throw Error(response.status);
   });
 };
 

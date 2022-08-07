@@ -2,9 +2,9 @@ import "./App.css";
 import NavBar from "../navBar/NavBar";
 import { Route } from "react-router-dom";
 import Coin from "../coin/Coin";
-import CoinChart from "../chart/CoinChart";
 import Definitions from "../definitions/Definitions";
 import Watchlist from "../watchlist/Watchlist";
+import Error from "../error/Error";
 
 const App = () => {
   return (
@@ -23,10 +23,12 @@ const App = () => {
         <Watchlist />
       </Route>
 
+      <Route exact path="/Error">
+        <Error />
+      </Route>
+
       <Route exact path="/">
         <>
-          {/* <CoinChart /> */}
-          {/* <CoinContainer /> */}
           <Definitions />
         </>
       </Route>

@@ -1,0 +1,18 @@
+.errorMessage {
+  font-size: 50px;
+  color: white;
+}
+
+.errorImage {
+  width: 30%;
+}
+
+.errorDiv {
+  height: 85vh;
+  text-align: center;
+  width: 99vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
