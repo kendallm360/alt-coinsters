@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("Alt-Coin spec", () => {
   beforeEach(() => {
     cy.intercept(
