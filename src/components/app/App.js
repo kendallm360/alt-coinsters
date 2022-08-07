@@ -1,6 +1,5 @@
 import "./App.css";
 import NavBar from "../navBar/NavBar";
-import CoinContainer from "../coinContainer/CoinContainer";
 import { Route } from "react-router-dom";
 import Coin from "../coin/Coin";
 import CoinChart from "../chart/CoinChart";
