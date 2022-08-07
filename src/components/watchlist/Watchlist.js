@@ -19,32 +19,31 @@ const Watchlist = () => {
 
   return (
     <div className="watchlist-page">
+      <div>
+        <select value={ticker} name={ticker} onChange={handleTickerSelect}>
+          <option>---Top Altcoins---</option>
+          {tickers.map((stock) => {
+            return (
+              <option key={Date.now() + stock.ticker} value={stock.ticker}>
+                {stock.crypto}
+              </option>
+            );
+          })}
+        </select>
+        <Link to={`/coin/${ticker}`}>
+          {ticker && (
+            <button className="search-coin" onClick={handleSubmit}>
+              Search
+            </button>
+          )}
+        </Link>
+      </div>
       {favorites.length < 1 ? (
-        <div>
-          <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-            <option>---Top Altcoins---</option>
-            {tickers.map((stock) => {
-              return (
-                <option key={Date.now() + stock.ticker} value={stock.ticker}>
-                  {stock.crypto}
-                </option>
-              );
-            })}
-          </select>
-          <Link to={`/coin/${ticker}`}>
-            {ticker && (
-              <button className="search-coin" onClick={handleSubmit}>
-                Search
-              </button>
-            )}
-          </Link>
-          <h2>YOU HAVE NOT ADDED ANY COINS TO YOUR WATCHLIST YET</h2>
-        </div>
+        <h2>YOU HAVE NOT ADDED ANY COINS TO YOUR WATCHLIST YET</h2>
       ) : (
         favorites.map((fave) => {
           return (
             <div className="watchlist-items">
-              {/* <p className="key">key={Date.now() + fave}</p> */}
               <img className="coin-logo" src={fave.coinInfo.img} />
               <Link to={`/coin/${fave.coinInfo.ticker}`}>
                 <h2>{fave.coinInfo.crypto}</h2>

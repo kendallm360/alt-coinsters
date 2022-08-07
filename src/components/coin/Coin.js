@@ -36,7 +36,6 @@ const Coin = ({ tickerSymbol }) => {
       })
       .catch(() => {
         setError(true);
-        // <Error />;
       });
   }, []);
 
@@ -91,7 +90,6 @@ const Coin = ({ tickerSymbol }) => {
       })
       .catch(() => {
         setError(true);
-        // <Error />;
       });
   }, []);
 
@@ -105,7 +103,6 @@ const Coin = ({ tickerSymbol }) => {
       })
       .catch(() => {
         setError(true);
-        // <Error />;
       });
     fetchAnnuals(alt)
       .then((data) => {
@@ -165,7 +162,6 @@ const Coin = ({ tickerSymbol }) => {
       })
       .catch(() => {
         setError(true);
-        // <Error />;
       });
   };
 

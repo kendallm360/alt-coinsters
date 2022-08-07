@@ -7,3 +7,11 @@
   cursor: pointer;
   height: 2em;
 }
+
+.homepage {
+  height: 100%;
+}
+
+.reference {
+  font-size: 0.5em;
+}

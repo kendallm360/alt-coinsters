@@ -1,6 +1,5 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { favorites } from "../../utils";
 const NavBar = () => {
   return (
     <div className="nav-bar">

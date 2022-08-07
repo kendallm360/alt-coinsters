@@ -28,9 +28,7 @@ const App = () => {
       </Route>
 
       <Route exact path="/">
-        <>
-          <Definitions />
-        </>
+        <Definitions />
       </Route>
     </div>
   );

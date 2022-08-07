@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { tickers } from "../../utils";
 import Coin from "../coin/Coin";
-// import
 
 const Definitions = () => {
   const [ticker, setTicker] = useState("");
@@ -17,7 +16,7 @@ const Definitions = () => {
   };
 
   return (
-    <>
+    <div className="homepage">
       <p>
         Welcome to AltCoinsters, a safe place for learning about the ins and
         outs of altcoins..specifically the good ones. If you are already
@@ -169,10 +168,11 @@ const Definitions = () => {
         market for the better or the worse.
       </span>
       <p className="reference">
-        Alot of this information can be found on investopedia.com, coinbase.com,
-        and polygon.api
+        ***Alot of this information can be found on investopedia.com,
+        coinbase.com, and polygon.api. Also these are all opinions, nothing you
+        see here is financial advice
       </p>
-    </>
+    </div>
   );
 };
 export default Definitions;
