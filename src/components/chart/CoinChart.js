@@ -12,7 +12,7 @@ const CoinChart = ({ chartData, chartOptions }) => {
 };
 export default CoinChart;
 
-// CoinChart.PropTypes = {
-//   chartData: PropTypes.Requireable<any>,
-//   chartOptions: PropTypes.Requireable<any>,
-// };
+CoinChart.propTypes = {
+  chartData: PropTypes.object.isRequired,
+  chartOptions: PropTypes.object.isRequired,
+};

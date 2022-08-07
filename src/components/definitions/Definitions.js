@@ -3,14 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { tickers } from "../../utils";
 import Coin from "../coin/Coin";
-// import
 
 const Definitions = () => {
   const [ticker, setTicker] = useState("");
-  //   const [submitted, setSubmitted] = useState(true);
 
   const handleSubmit = () => {
-    // setSubmitted(false);
     <Coin ticker={ticker} />;
   };
 
@@ -18,50 +15,38 @@ const Definitions = () => {
     setTicker(event.target.value);
   };
 
-  let dateTest = new Date(1659398400000);
-  console.log(dateTest);
   return (
-    <>
-      {/* <div className="tab-selector">
-        <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-          <option>--Choose A Top Alt--</option>
-          {tickers.map((stock) => {
-            return <option value={stock.ticker}>{stock.crypto}</option>;
-          })}
-        </select> */}
-      {/* <Link to={`/coin/${ticker}`}>
-          <button onClick={handleSubmit}>Try?</button>
-        </Link> */}
+    <div className="homepage">
       <p>
-        Welcome to ALT-Coinsters, a safe place for learning about the ins and
+        Welcome to AltCoinsters, a safe place for learning about the ins and
         outs of altcoins..specifically the good ones. If you are already
-        familiar with the crypto space feel free to look at some of my personal
+        familiar with the crypto space feel free to checkout some of my personal
         favorites
-        <div className="tab-selector">
-          <select value={ticker} name={ticker} onChange={handleTickerSelect}>
-            <option>---Top Altcoins---</option>
-            {tickers.map((stock) => {
-              return <option value={stock.ticker}>{stock.crypto}</option>;
-            })}
-          </select>
-          <Link to={`/coin/${ticker}`}>
+      </p>
+      <div className="tab-selector">
+        <select value={ticker} name={ticker} onChange={handleTickerSelect}>
+          <option>---Top Altcoins---</option>
+          {tickers.map((stock) => {
+            return (
+              <option key={Date.now() + stock.ticker} value={stock.ticker}>
+                {stock.crypto}
+              </option>
+            );
+          })}
+        </select>
+        <Link to={`/coin/${ticker}`}>
+          {ticker && (
             <button className="search-coin" onClick={handleSubmit}>
-              Try?
+              Search
             </button>
-          </Link>
-        </div>
-      </p>
-      <p>
-        If not no worries, we got you covered by bringing you right where you
-        need to be. Below you will see definitions of what all these words means
-        and help teach you the things that are Important to know at surface
-        level
-      </p>
-      <h2>For starters what is an Alt-coin even?</h2>
+          )}
+        </Link>
+      </div>
+      <h2>What's an Alt-coin?</h2>
       <p>
         Altcoins are generally defined as all cryptocurrencies other than
         Bitcoin (BTC). However, some people consider altcoins to be all
-        crytocurrencies other than Bitcoin and Ethereum (ETH) because most
+        cryptocurrencies other than Bitcoin and Ethereum (ETH) because most
         cryptocurrencies are forked from one of the two. Some altcoins use
         different consensus mechanisms to validate transactions and open new
         blocks, or attempt to distinguish themselves from Bitcoin and Ethereum
@@ -76,8 +61,7 @@ const Definitions = () => {
         of some of the types of altcoins and what they are intended to be used
         for. It is possible for an altcoin to fall into more than one category
       </p>
-      {/* <ul> */}
-      <li>Payment Token</li>
+      <h2>Payment Token</h2>
       <p>
         As the name implies, payment tokens are designed to be used as
         currency—to exchange value between parties.{" "}
@@ -88,8 +72,7 @@ const Definitions = () => {
         </Link>
         is the prime example of a payment token.
       </p>
-      {/* </ul> */}
-      <li>StableCoins</li>
+      <h2>StableCoins</h2>
       <p>
         Cryptocurrency trading and use have been marked by volatility since
         launch. Stablecoins aim to reduce this overall volatility by pegging
@@ -99,12 +82,12 @@ const Definitions = () => {
         Price fluctuations for stablecoins are not meant to exceed a narrow
         range which leads to them not straying too far away from $1. In March
         2021, payment processing giant Visa Inc. (V) announced that it would
-        begin settling some transactions on its network in
+        begin settling some transactions on its network in{" "}
         <Link to="/coin/USDC">
           <button className="coin-button" onClick={handleSubmit}>
             USDC
           </button>
-        </Link>
+        </Link>{" "}
         over the Ethereum blockchain.
         <Link to="/coin/USDT">
           <button className="coin-button" onClick={handleSubmit}>
@@ -113,7 +96,7 @@ const Definitions = () => {
         </Link>{" "}
         is a another notable StableCoin by definition.
       </p>
-      <li>Utility Tokens</li>
+      <h2>Utility Tokens</h2>
       <p>
         Utility tokens are used to provide services within a network. For
         example, they might be used to purchase services, pay network fees, or
@@ -124,15 +107,18 @@ const Definitions = () => {
           </button>
         </Link>{" "}
         , my favorite pure utility coin, uses "LINKS" to compensate Chainlink
-        Node operators for the retrieval of data from the external data sources,
-        turning it to blockchain readable format, off-chain computation, and
-        uptime guarantees. aka Paid for helping mine the coin Ether (ETH) is
-        also a utility token. It is designed to be used in the Ethereum
+        Node operators for helping mine the coin.
+        <Link to="/coin/ETH">
+          <button className="coin-button" onClick={handleSubmit}>
+            ETH
+          </button>
+        </Link>{" "}
+        is also a utility token. It is designed to be used in the Ethereum
         blockchain and virtual machine to pay for transactions. Utility tokens
         can be purchased on exchanges and held, but they are meant to be used in
         the blockchain network to keep it functioning.
       </p>
-      <li>The infamous Meme Coins</li>
+      <h2>The Infamous Meme Coins</h2>
       <p>
         As their name suggests, meme coins are inspired by a joke or a silly
         take on other well-known cryptocurrencies. They typically gain
@@ -159,7 +145,7 @@ const Definitions = () => {
           </Link>{" "}
         </span>
       </p>
-      <li>Security Tokens</li>
+      <h2>Security Tokens</h2>
       <p>
         Security tokens are tokenized assets offered on stock markets.
         Tokenization is the transfer of value from an asset to a token, which is
@@ -174,13 +160,7 @@ const Definitions = () => {
           them because adaptation could change the space completely
         </span>
       </p>
-      <h2>Levels of alt coins</h2>
-      <p>gen1</p>
-      <p>gen2</p>
-      <p>gen3</p>
-      <h2>Definitions and Terms</h2>
-      {/* <p>As with any niche space crypto nerds have their own jargon.</p> */}
-      <h3>Market Movers</h3>
+      <h2>Market Movers</h2>
       <span>
         BTC and ETH are the most prominent market movers but there are others to
         be aware of. No matter your opinion of them as a coin itself you have to
@@ -188,10 +168,11 @@ const Definitions = () => {
         market for the better or the worse.
       </span>
       <p className="reference">
-        Alot of this information can be found on investopedia.com, coinbase.com,
-        and polygon.api
+        ***Alot of this information can be found on investopedia.com,
+        coinbase.com, and polygon.api. Also these are all opinions, nothing you
+        see here is financial advice
       </p>
-    </>
+    </div>
   );
 };
 export default Definitions;

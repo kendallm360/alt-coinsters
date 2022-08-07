@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("Watchlist spec", () => {
   beforeEach(() => {
     cy.intercept(
@@ -20,7 +21,7 @@ describe("Watchlist spec", () => {
     cy.get(".coin-logo").should("not.exist");
   });
 
-  it.("should show the correct url and be able to navigate back to homepage", () => {
+  it("should show the correct url and be able to navigate back to homepage", () => {
     cy.get(".watchlist").click();
     cy.url().should("include", "/watchlist");
     cy.go("back").get(".coin-button").should("have.length.greaterThan", 3);

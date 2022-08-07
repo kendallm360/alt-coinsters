@@ -1,0 +1,10 @@
+.annual-volume,
+.annual-low,
+.annual-high,
+.close,
+.low,
+.high,
+.volume {
+  display: flex;
+  flex-direction: column;
+}
