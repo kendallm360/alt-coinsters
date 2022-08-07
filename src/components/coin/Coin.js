@@ -53,7 +53,7 @@ const Coin = ({ tickerSymbol }) => {
       );
       setChartData({
         labels: [
-          "August",
+          //   "August",
           "September",
           "October",
           "November",
@@ -66,6 +66,12 @@ const Coin = ({ tickerSymbol }) => {
           "June",
           "July",
           "August",
+          //   "March",
+          //   "April",
+          //   "May",
+          //   "June",
+          //   "July",
+          //   "August",
         ],
         // labels: [
         //   data.results.map((day) => new Date(day.t).toLocaleDateString()),
@@ -149,6 +155,14 @@ const Coin = ({ tickerSymbol }) => {
           title: {
             display: true,
             text: "HIGHEST PRICES PER MONTH",
+          },
+        },
+        scales: {
+          y: {
+            suggestedMax: data.results
+              .map((day) => day.h)
+              .sort()
+              .pop(),
           },
         },
       });

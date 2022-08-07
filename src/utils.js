@@ -21,6 +21,18 @@ import cardano from "../src/images/cardano.png";
 
 const favorites = [];
 
+const assignDecimalPlaces = (value) => {
+  if (value > 1) {
+    return value.toPrecision(2);
+  }
+  if (value < 0.1) {
+    return value.toPrecision(3);
+  }
+  if (value < 1 && value > 0.1) {
+    return value.toPrecision(2);
+  }
+};
+
 const tickers = [
   {
     crypto: "ETHEREUM",
@@ -364,4 +376,11 @@ const btcAnnual = [
   },
 ];
 
-export { assignName, btcAnnual, tickers, assignData, favorites };
+export {
+  assignDecimalPlaces,
+  assignName,
+  btcAnnual,
+  tickers,
+  assignData,
+  favorites,
+};
