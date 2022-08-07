@@ -1,6 +1,6 @@
 import "./App.css";
 import NavBar from "../navBar/NavBar";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Coin from "../coin/Coin";
 import Definitions from "../definitions/Definitions";
 import Watchlist from "../watchlist/Watchlist";
@@ -30,6 +30,8 @@ const App = () => {
       <Route exact path="/">
         <Definitions />
       </Route>
+
+      <Route render={() => <Redirect to={{ pathname: "/" }} />} />
     </div>
   );
 };
