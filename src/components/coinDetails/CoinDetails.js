@@ -12,8 +12,6 @@ const CoinDetails = ({
   return (
     <>
       <section className="coin-details">
-        {/* <h3>Market Cap</h3>
-    <p>number</p> */}
         <div className="volume">
           <h3>Previous Day's Volume</h3>
           <p className="previous-volume">{Math.round(coin.v)}</p>
@@ -31,17 +29,17 @@ const CoinDetails = ({
           <p className="previous-close">${assignDecimalPlaces(coin.c)}</p>
         </div>
         <div className="annual-high">
-          <h3>52W high?</h3>
+          <h3>52W high</h3>
           <p className="annual-high-value">
             ${assignDecimalPlaces(annualHigh)}
           </p>
         </div>
         <div className="annual-low">
-          <h3>52W Low?</h3>
+          <h3>52W Low</h3>
           <p className="annual-low-value">${assignDecimalPlaces(annualLow)}</p>
         </div>
         <div className="annual-volume">
-          <h3>52W Volume?</h3>
+          <h3>52W Volume</h3>
           <p className="annual-volume-value">{Math.round(annualVolume)}</p>
         </div>
       </section>
