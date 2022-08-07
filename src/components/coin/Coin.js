@@ -1,10 +1,10 @@
+import "./Coin.css";
 import { useEffect, useState } from "react";
 import { fetchCoinPreviousDay, fetchAnnuals } from "../../apiCalls";
 import PropTypes from "prop-types";
 import { assignName, tickers, assignData, favorites } from "../../utils";
 import CoinDetails from "../coinDetails/CoinDetails";
 import CoinChart from "../chart/CoinChart";
-import "./Coin.css";
 import { Link } from "react-router-dom";
 
 const Coin = ({ tickerSymbol }) => {
@@ -16,6 +16,7 @@ const Coin = ({ tickerSymbol }) => {
   const [annualLow, setAnnualLow] = useState(0);
   const [annualVolume, setAnnualVolume] = useState(0);
   const [coinData, setCoinData] = useState("");
+  const [favorited, setFavorited] = useState(false);
 
   const [chartData, setChartData] = useState({
     labels: [],
@@ -49,7 +50,6 @@ const Coin = ({ tickerSymbol }) => {
       );
       setChartData({
         labels: [
-          //   "August",
           "September",
           "October",
           "November",
@@ -62,17 +62,7 @@ const Coin = ({ tickerSymbol }) => {
           "June",
           "July",
           "August",
-          //   "March",
-          //   "April",
-          //   "May",
-          //   "June",
-          //   "July",
-          //   "August",
         ],
-        // labels: [
-        //   data.results.map((day) => new Date(day.t).toLocaleDateString()),
-        // ],
-
         datasets: [
           {
             label: "HIGHEST CLOSE",
@@ -84,9 +74,6 @@ const Coin = ({ tickerSymbol }) => {
       setChartOptions({
         responsive: true,
         plugins: {
-          //   legend: {
-          //     position: "top",
-          //   },
           title: {
             display: true,
             text: "HIGHEST PRICES PER MONTH",
@@ -118,9 +105,7 @@ const Coin = ({ tickerSymbol }) => {
           .pop()
       );
       setChartData({
-        // labels: [data.results.map((day) => new Date(day.t))],
         labels: [
-          "August",
           "September",
           "October",
           "November",
@@ -145,9 +130,6 @@ const Coin = ({ tickerSymbol }) => {
       setChartOptions({
         responsive: true,
         plugins: {
-          //   legend: {
-          //     position: "top",
-          //   },
           title: {
             display: true,
             text: "HIGHEST PRICES PER MONTH",
@@ -176,6 +158,7 @@ const Coin = ({ tickerSymbol }) => {
       lastClose: coin.c,
       coinInfo: coinData,
     });
+    setFavorited(true);
   };
 
   return (
@@ -188,15 +171,17 @@ const Coin = ({ tickerSymbol }) => {
           })}
         </select>
         <Link to={`/coin/${alt}`}>
-          <button onClick={handleRender}>Search</button>
+          <button className="search" onClick={handleRender}>
+            Search
+          </button>
         </Link>
       </div>
       <header className="coin-header">
         <div className="coin-information">
           <img className="coin-logo" src={coinData.img} />
           <h2 className="coin-name">{coinData.crypto}</h2>
-          {/* <span>({symbol.length > 1 ? symbol : `USD${symbol}`})</span> */}
           <span>{coinData.ticker}</span>
+          {favorited && <span>⭐️</span>}
         </div>
         <button className="add-to-watchlist" onClick={addToFavorites}>
           Add to Watchlist

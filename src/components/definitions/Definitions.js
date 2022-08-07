@@ -37,11 +37,6 @@ const Definitions = () => {
           </Link>
         </div>
       </p>
-      <p>
-        If not no worries, you are in the right place. Below you will see
-        definitions of what all these words means and help teach you the things
-        that are Important to know at surface level
-      </p>
       <h2>What's an Alt-coin?</h2>
       <p>
         Altcoins are generally defined as all cryptocurrencies other than

@@ -7,5 +7,7 @@
   background-position: center;
   color: white;
   font-family: space-mono, mono;
+  height: fit-content;
   text-align: center;
+  width: fit-content;
 }
