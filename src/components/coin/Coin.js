@@ -188,7 +188,7 @@ const Coin = ({ tickerSymbol }) => {
           {/* <span>({symbol.length > 1 ? symbol : `USD${symbol}`})</span> */}
           <span>{coinData.ticker}</span>
         </div>
-        <button className="watchlist" onClick={addToFavorites}>
+        <button className="add-to-watchlist" onClick={addToFavorites}>
           Add to Watchlist
         </button>
       </header>
